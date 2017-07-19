@@ -1,0 +1,70 @@
+{
+  "name": "feedbackfruits-knowledge-engine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dist": "tsc",
+    "clean": "rm -rf dist",
+    "lint": "tslint -c tslint.json -p tsconfig.json --type-check -t codeFrame 'src/**/*.ts'",
+    "lint-fix": "tslint -c tslint.json 'src/**/*.ts' --fix",
+    "prestart": "npm run lint && npm run dist",
+    "start": "node dist",
+    "pretest": "npm run clean && tsc --inlineSourceMap",
+    "test": "nyc ava",
+    "watch-test": "nodemon -w test -x 'npm run test'",
+    "coverage": "codecov",
+    "watch": "nodemon dist"
+  },
+  "nyc": {},
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ],
+    "source": [
+      "src/**/*.ts"
+    ],
+    "match": [],
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "tap": false,
+    "powerAssert": false,
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "author": "Steffan Sluis <steffansluis@gmail.com>",
+  "repository": "git+https://github.com/feedbackfruits/feedbackfruits-knowledge-engine.git",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feedbackfruits/feedbackfruits-knowledge-engine/issues"
+  },
+  "homepage": "https://github.com/feedbackfruits/feedbackfruits-knowledge-engine#readme",
+  "dependencies": {
+    "@types/node": "^8.0.14",
+    "dotenv": "^4.0.0",
+    "feedbackfruits-knowledge-context": "github:feedbackfruits/feedbackfruits-knowledge-context",
+    "memux": "github:knowledge-express/memux",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.1"
+  },
+  "devDependencies": {
+    "ava": "^0.20.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "blue-tape": "^0.2.0",
+    "codecov": "^1.0.1",
+    "nodemon": "^1.11.0",
+    "nyc": "^11.1.0",
+    "supertest": "^3.0.0",
+    "tap": "^5.7.0"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  }
+}
