@@ -58,6 +58,16 @@
   version "4.14.70"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.70.tgz#37bda4acfb3bb79143009cc9d00abd559f7dca30"
 
+"@types/node-uuid@^0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@types/node-uuid/-/node-uuid-0.0.28.tgz#41655b5ce63b2f3374c4e826b4dd21e729058e3d"
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  version "8.0.17"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.17.tgz#677bc8c118cfb76013febb62ede1f31d2c7222a1"
+
 "@types/node@^8.0.10", "@types/node@^8.0.14", "@types/node@^8.0.8":
   version "8.0.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.14.tgz#4a19dc6bb61d16c01cbadc7b30ac23518fff176b"
@@ -2696,13 +2706,15 @@ mem@^1.1.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-"memux@github:knowledge-express/memux":
+"memux@github:knowledge-express/memux#feature/more-typescript-things":
   version "0.3.1"
-  resolved "https://codeload.github.com/knowledge-express/memux/tar.gz/842ac56470b6174c60b0d1c4ade137effcf10177"
+  resolved "https://codeload.github.com/knowledge-express/memux/tar.gz/001c26eca2c39a185059611395fb6578071d6fbe"
   dependencies:
     "@reactivex/rxjs" "^5.4.2"
     "@types/node" "^8.0.10"
+    "@types/node-uuid" "^0.0.28"
     no-kafka "^3.2.0"
+    node-uuid "^1.4.8"
     p-queue "^1.1.0"
     typescript "^2.4.1"
 
@@ -2870,7 +2882,7 @@ node-pre-gyp@^0.6.36:
     tar "^2.2.1"
     tar-pack "^3.4.0"
 
-node-uuid@~1.4.0:
+node-uuid@^1.4.8, node-uuid@~1.4.0:
   version "1.4.8"
   resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.8.tgz#b040eb0923968afabf8d32fb1f17f1167fdab907"
 

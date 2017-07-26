@@ -47,7 +47,7 @@
     "@types/node": "^8.0.14",
     "dotenv": "^4.0.0",
     "feedbackfruits-knowledge-context": "github:feedbackfruits/feedbackfruits-knowledge-context",
-    "memux": "github:knowledge-express/memux",
+    "memux": "github:knowledge-express/memux#feature/more-typescript-things",
     "tslint": "^5.5.0",
     "typescript": "^2.4.1"
   },

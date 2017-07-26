@@ -1,5 +1,5 @@
 import test from 'ava';
-import Engine from '../dist';
+import * as Engine from '../dist';
 
 test('it exists', t => {
   t.not(Engine, undefined);
