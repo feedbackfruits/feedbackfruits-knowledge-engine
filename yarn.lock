@@ -2708,7 +2708,7 @@ mem@^1.1.0:
 
 "memux@github:knowledge-express/memux#feature/more-typescript-things":
   version "0.3.1"
-  resolved "https://codeload.github.com/knowledge-express/memux/tar.gz/001c26eca2c39a185059611395fb6578071d6fbe"
+  resolved "https://codeload.github.com/knowledge-express/memux/tar.gz/d51627a008ae657aa0b44185cd7170e75ad650bd"
   dependencies:
     "@reactivex/rxjs" "^5.4.2"
     "@types/node" "^8.0.10"

@@ -15,7 +15,7 @@
         "noLib": false,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
-        "outDir": "dist",
+        "outDir": "lib",
         "lib": [
             "es2017",
             "dom"
@@ -28,7 +28,7 @@
         "node_modules",
         "typings/browser",
         "typings/browser.d.ts",
-        "dist"
+        "lib"
     ],
     "compileOnSave": true,
     "buildOnSave": false,

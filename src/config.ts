@@ -9,7 +9,7 @@ export const Miner = {
 
 // Miner config
 export const Annotator = {
-  INPUT_TOPIC: 'quad_update_requests',
+  INPUT_TOPIC: 'quad_updates',
   OUTPUT_TOPIC: 'quad_update_requests',
 };
 

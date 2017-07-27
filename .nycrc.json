@@ -6,7 +6,7 @@
   "functions": 0,
   "branches": 5,
   "include": [
-    "dist/**/*.js"
+    "lib/**/*.js"
   ],
   "exclude": [
   ],
