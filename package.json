@@ -7,15 +7,16 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf lib",
-    "lint": "tslint -c tslint.json -p tsconfig.json --type-check -t codeFrame 'src/**/*.ts'",
-    "lint-fix": "tslint -c tslint.json 'src/**/*.ts' --fix",
-    "prestart": "npm run lint && npm run build",
+    "prestart": "npm run build",
     "start": "node lib",
-    "pretest": "npm run clean && tsc --inlineSourceMap",
-    "test": "nyc ava test/index.js",
+    "pretest": "npm run clean && tsc --inlineSourceMap --outDir lib",
+    "test": "nyc ava --verbose",
+    "posttest": "npm run clean && npm run build",
     "watch-test": "nodemon -w test -x 'npm run test'",
     "coverage": "codecov",
-    "watch": "nodemon lib"
+    "watch": "nodemon lib",
+    "lint": "tslint -c tslint.json -p tsconfig.json --type-check -t codeFrame 'src/**/*.ts'",
+    "lint-fix": "tslint -c tslint.json 'src/**/*.ts' --fix"
   },
   "nyc": {},
   "ava": {
