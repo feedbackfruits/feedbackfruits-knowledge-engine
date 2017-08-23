@@ -48,6 +48,8 @@
     "@types/node": "^8.0.14",
     "dotenv": "^4.0.0",
     "feedbackfruits-knowledge-context": "github:feedbackfruits/feedbackfruits-knowledge-context",
+    "isuri": "^2.0.3",
+    "jsonld": "^0.4.12",
     "memux": "knowledge-express/memux#semver:~0.4.0",
     "tslint": "^5.5.0",
     "typescript": "^2.4.1"
