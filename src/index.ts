@@ -1,3 +1,6 @@
+import * as Config from './config';
+export { Config };
+
 export * from './doc';
 
 export * from './miner';
