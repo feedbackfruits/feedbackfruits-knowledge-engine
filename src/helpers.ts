@@ -63,6 +63,6 @@ export const docToQuads = async (doc: Doc): Promise<Quad[]> => {
 export const quadsToNQuads = (quads: Quad[]): Array<string> => {
   return quads.map(quad => {
     const { subject, predicate, object, label } = quad;
-    return `${subject} ${predicate} ${JSON.stringify(object)} ${label || '.'}`;
+    return `${subject} ${predicate} ${isIRI(object) ? object : JSON.stringify(object)} ${label || '.'}`;
   });
 };

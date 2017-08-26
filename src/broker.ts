@@ -22,6 +22,7 @@ export async function Broker({ name, receive, customConfig = {} }: BrokerOptions
     url: config.KAFKA_ADDRESS,
     topic: config.INPUT_TOPIC,
     receive,
+    concurrency: config.CONCURRENCY,
     ssl
   });
 }
