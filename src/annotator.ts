@@ -34,6 +34,7 @@ export async function Annotator({ name, receive, customConfig = {} }: AnnotatorO
     url: config.KAFKA_ADDRESS,
     topic: config.INPUT_TOPIC,
     receive: _receive,
+    concurrency: config.CONCURRENCY,
     ssl
   });
 }
