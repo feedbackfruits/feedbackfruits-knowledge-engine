@@ -1614,12 +1614,12 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
-"feedbackfruits-knowledge-context@github:feedbackfruits/feedbackfruits-knowledge-context":
+feedbackfruits-knowledge-context@feedbackfruits/feedbackfruits-knowledge-context#feature/ontology:
   version "1.0.0"
-  resolved "https://codeload.github.com/feedbackfruits/feedbackfruits-knowledge-context/tar.gz/8a795df825260e1b5094f4ba60c5ce2a9465baca"
+  resolved "https://codeload.github.com/feedbackfruits/feedbackfruits-knowledge-context/tar.gz/14ad6799269c095429bdbaefcc6f78c415ad377d"
   dependencies:
     "@types/node" "^8.0.8"
-    tslint "^5.5.0"
+    recursive-readdir-sync "^1.0.6"
     typescript "^2.4.1"
 
 figures@^2.0.0:
@@ -3497,6 +3497,10 @@ readdirp@^2.0.0:
     minimatch "^3.0.2"
     readable-stream "^2.0.2"
     set-immediate-shim "^1.0.1"
+
+recursive-readdir-sync@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/recursive-readdir-sync/-/recursive-readdir-sync-1.0.6.tgz#1dbf6d32f3c5bb8d3cde97a6c588d547a9e13d56"
 
 redent@^1.0.0:
   version "1.0.0"

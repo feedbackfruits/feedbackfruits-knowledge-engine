@@ -47,7 +47,7 @@
   "dependencies": {
     "@types/node": "^8.0.14",
     "dotenv": "^4.0.0",
-    "feedbackfruits-knowledge-context": "github:feedbackfruits/feedbackfruits-knowledge-context",
+    "feedbackfruits-knowledge-context": "feedbackfruits/feedbackfruits-knowledge-context#feature/ontology",
     "isuri": "^2.0.3",
     "jsonld": "^0.4.12",
     "memux": "github:knowledge-express/memux#~0.4.1",
