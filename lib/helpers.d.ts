@@ -1,9 +1,14 @@
 import Quad from './quad';
 import Doc from './doc';
+import * as memux from 'memux';
 export declare function iriify(str: string): string;
 export declare function encodeIRI(str: string): string;
 export declare function isIRI(str: string): boolean;
 export declare function decodeIRI(str: string): string;
-export declare const quadsToDocs: (quads: Quad[]) => Doc[];
+export declare function createSend(config: memux.SendConfig<Doc>): (operation: memux.Operation<Doc>) => Promise<memux.Operation<Doc>>;
+export declare function createReceive(config: memux.SourceConfig<Doc>): () => Promise<void>;
+export declare function compactDoc(ld: Object, context: Object): Promise<Doc>;
+export declare function expandDoc(ld: Object, context: Object): Promise<Doc>;
+export declare const quadsToDocs: (quads: Quad[], context: Object) => Promise<Doc>;
 export declare const docToQuads: (doc: Doc) => Promise<Quad[]>;
-export declare const quadsToNQuads: (quads: Quad[]) => string[];
+export declare const quadsToNQuads: (quads: Quad[]) => string;

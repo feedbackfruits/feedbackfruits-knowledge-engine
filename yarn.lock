@@ -1616,7 +1616,7 @@ fast-levenshtein@~2.0.4:
 
 feedbackfruits-knowledge-context@feedbackfruits/feedbackfruits-knowledge-context#feature/ontology:
   version "1.0.0"
-  resolved "https://codeload.github.com/feedbackfruits/feedbackfruits-knowledge-context/tar.gz/14ad6799269c095429bdbaefcc6f78c415ad377d"
+  resolved "https://codeload.github.com/feedbackfruits/feedbackfruits-knowledge-context/tar.gz/4b76c44b8c3d3c752b6d7c443150a394c712ebbe"
   dependencies:
     "@types/node" "^8.0.8"
     recursive-readdir-sync "^1.0.6"

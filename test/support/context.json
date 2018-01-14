@@ -1,0 +1,142 @@
+[
+  {
+    "@vocab": "https://knowledge.express/",
+    "startPosition": "https://knowledge.express/startPosition",
+    "confidence": "https://knowledge.express/confidence",
+    "detectedAs": "https://knowledge.express/detectedAs",
+    "Annotation": "https://knowledge.express/Annotation",
+    "Tag": "https://knowledge.express/Tag",
+    "DocumentSection": "https://knowledge.express/DocumentSection",
+    "Resource": "https://knowledge.express/Resource",
+    "Topic": "https://knowledge.express/Topic",
+    "section": {
+      "@id": "https://knowledge.express/section",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "Document": "https://knowledge.express/Document",
+    "Taggable": "https://knowledge.express/Taggable",
+    "sectionOf": {
+      "@id": "https://knowledge.express/sectionOf",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "endPosition": "https://knowledge.express/endPosition",
+    "topic": {
+      "@id": "https://knowledge.express/topic",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "tag": {
+      "@id": "https://knowledge.express/tag",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "annotation": {
+      "@id": "https://knowledge.express/annotation",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "Video": "https://knowledge.express/Video",
+    "caption": {
+      "@id": "https://knowledge.express/caption",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "captionOf": {
+      "@id": "https://knowledge.express/captionOf",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "startsAfter": "https://knowledge.express/startsAfter",
+    "duration": "https://knowledge.express/duration",
+    "VideoCaption": "https://knowledge.express/VideoCaption",
+    "CreativeWork": "https://knowledge.express/CreativeWork",
+    "fieldOfStudy": {
+      "@id": "https://knowledge.express/fieldOfStudy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "Entity": "https://knowledge.express/Entity",
+    "entity": {
+      "@id": "https://knowledge.express/entity",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "resource": {
+      "@id": "https://knowledge.express/resource",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "score": "https://knowledge.express/score",
+    "previous": {
+      "@id": "https://knowledge.express/previous",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "next": {
+      "@id": "https://knowledge.express/next",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "parent": {
+      "@id": "https://knowledge.express/parent",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "child": {
+      "@id": "https://knowledge.express/child",
+      "@type": "@id",
+      "@container": "@set"
+    }
+  },
+  {
+    "@vocab": "http://schema.org/",
+    "name": "http://schema.org/name",
+    "description": "http://schema.org/description",
+    "image": {
+      "@id": "http://schema.org/image",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "license": {
+      "@id": "http://schema.org/license",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "sourceOrganization": {
+      "@id": "http://schema.org/sourceOrganization",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "text": {
+      "@id": "http://schema.org/text",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "CreativeWork": "http://schema.org/CreativeWork",
+    "VideoObject": "http://schema.org/VideoObject"
+  },
+  {
+    "@vocab": "http://www.w3.org/2002/07/owl#",
+    "Thing": "http://www.w3.org/2002/07/owl#Thing"
+  },
+  {
+    "@vocab": "http://academic.microsoft.com/",
+    "parentFieldOfStudy": {
+      "@id": "http://academic.microsoft.com/parentFieldOfStudy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "childFieldOfStudy": {
+      "@id": "http://academic.microsoft.com/childFieldOfStudy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "FieldOfStudy": "http://academic.microsoft.com/FieldOfStudy"
+  },
+  {
+    "@vocab": "http://www.w3.org/ns/oa#",
+    "SemanticTag": "http://www.w3.org/ns/oa#SemanticTag"
+  }
+]
