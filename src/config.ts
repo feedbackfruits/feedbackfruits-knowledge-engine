@@ -22,6 +22,9 @@ export const Broker = {
 // Default values
 const {
   NAME = 'feedbackfruits-knowledge-engine',
+
+  CAYLEY_ADDRESS = 'http://localhost:64210',
+
   KAFKA_ADDRESS = 'tcp://localhost:9092',
   KAFKA_PRIVATE_KEY,
   KAFKA_CERT,
@@ -35,6 +38,8 @@ const CONCURRENCY = parseInt(process.env.CONCURRENCY) || 8;
 
 export const Base = {
   NAME,
+
+  CAYLEY_ADDRESS,
 
   KAFKA_ADDRESS,
   KAFKA_PRIVATE_KEY,

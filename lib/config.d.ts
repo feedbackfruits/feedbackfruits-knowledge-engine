@@ -12,6 +12,7 @@ export declare const Broker: {
 };
 export declare const Base: {
     NAME: string;
+    CAYLEY_ADDRESS: string;
     KAFKA_ADDRESS: string;
     KAFKA_PRIVATE_KEY: string;
     KAFKA_CERT: string;
