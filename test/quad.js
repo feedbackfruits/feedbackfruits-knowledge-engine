@@ -1,20 +1,28 @@
 import test from 'ava';
-import { isQuad } from '../lib/quad';
+import Quad from '../lib/quad';
+import * as Support from './support';
 
-test('isQuad', t => {
+test('Quad.isQuad', t => {
   const quad = { subject: '', predicate: '', object: '' };
-  t.is(isQuad(quad), true);
+  t.is(Quad.isQuad(quad), true);
 
   let notQuad;
-  t.not(isQuad(notQuad), true);
+  t.not(Quad.isQuad(notQuad), true);
   notQuad = null;
-  t.not(isQuad(notQuad), true);
+  t.not(Quad.isQuad(notQuad), true);
   notQuad = 1234;
-  t.not(isQuad(notQuad), true);
+  t.not(Quad.isQuad(notQuad), true);
   notQuad = 'test';
-  t.not(isQuad(notQuad), true);
+  t.not(Quad.isQuad(notQuad), true);
   notQuad = {};
-  t.not(isQuad(notQuad), true);
+  t.not(Quad.isQuad(notQuad), true);
   notQuad = () => {};
-  t.not(isQuad(notQuad), true);
+  t.not(Quad.isQuad(notQuad), true);
 });
+
+
+test('Quad.quadsToNQuads', t => {
+  const res = Quad.toNQuads(Support.quads);
+  // console.log(JSON.stringify(res));
+  return t.deepEqual(res, Support.nquads);
+})

@@ -27,7 +27,7 @@ export function createSend(config: memux.SendConfig<Doc>): (operation: memux.Ope
   return async ({ action, key, data}) => {
     const sendFn = await memux.createSend(config);
 
-    const compactedDoc = await compactDoc(data, {});
+    const compactedDoc = await Doc.compact(data, { "@context": [] });
 
     return sendFn({ action, key, data: compactedDoc });
   };
@@ -39,43 +39,46 @@ export function createReceive(config: memux.SourceConfig<Doc>) {
   };
 }
 
-export async function compactDoc(ld: Object, context: Object): Promise<Doc> {
-  const res = await jsonld.compact(await expandDoc(ld, context), context);
+export async function getDoc(config, subject): Promise<Doc> {
+  const { CAYLEY_ADDRESS } = config;
 
-  // Here we strip the context from the compacted result
-  delete res["@context"];
+  console.log('Getting quads for:', subject);
+  const query = `
+  var subject = ${JSON.stringify(encodeIRI(subject))};
+  g.V(subject)
+  	.OutPredicates()
+  	.ForEach(function mapPredicates(node) {
+        var predicate = node.id;
+        return g.V(subject)
+          .Out(predicate)
+          .ForEach(function emitObject(node) {
+            var object = node.id;
+            g.Emit({
+              subject: subject,
+              predicate: predicate,
+              object: object
+            });
+          });
+      })`;
 
-  return res;
-}
+  const url = `${CAYLEY_ADDRESS}/api/v1/query/gizmo`;
+  // console.log('Fetching from url:', url, fetch.toString());
 
-export async function expandDoc(ld: Object, context: Object): Promise<Doc> {
-  return jsonld.expand({ "@context": context, "@graph": ld });
+  const response = await fetch(url, {
+    method: 'post',
+    body: query
+  });
+  const { result: quads = [] } = await response.json();
+
+  return quadsToDocs(quads, Context.context);
 }
 
 // The result of this function is based on the expected input of
 // the jsonld library to produce the quads we want.
-export const quadsToDocs = async (quads: Array<Quad>, context: Object): Promise<Doc> => {
-  const nquads = quadsToNQuads(quads);
+export const quadsToDocs = async (quads: Array<Quad>, context: any): Promise<Doc> => {
+  const nquads = Quad.toNQuads(quads);
   const doc = await jsonld.fromRDF(nquads);
-  return expandDoc(doc, context);
-
-  // return Object.values(quads.reduce((memo, quad) => {
-  //   let { subject, predicate, object } = quad;
-  //
-  //   // Hacky hacks are hacky
-  //   if (predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') predicate = '@type';
-  //
-  //   return {
-  //     ...memo,
-  //     [decodeIRI(subject)]: {
-  //       ...(memo[decodeIRI(subject)] || { '@id': decodeIRI(subject) }),
-  //       [decodeIRI(predicate)]: [
-  //         ...((memo[decodeIRI(subject)] && memo[decodeIRI(subject)][decodeIRI(predicate)]) || []),
-  //         object
-  //       ]
-  //     }
-  //   };
-  // }, {}));
+  return Doc.expand(doc, context);
 };
 
 export const docToQuads = async (doc: Doc): Promise<Quad[]> => {
@@ -92,11 +95,4 @@ export const docToQuads = async (doc: Doc): Promise<Quad[]> => {
 
   // We reverse the quads to preserve the order of the types (and possibly other things)
   return quads.reverse();
-};
-
-export const quadsToNQuads = (quads: Quad[]): string => {
-  return quads.map(quad => {
-    const { subject, predicate, object, label } = quad;
-    return `${subject} ${predicate} ${isIRI(object) ? object : JSON.stringify(object)} ${label ? label : ''} .\n`;
-  }).join('');
 };
