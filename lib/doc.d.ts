@@ -7,5 +7,7 @@ export declare module Doc {
     function expand(doc: Doc, context: Context): Promise<Doc>;
     function flatten(doc: Doc, context: Context): Promise<Doc[]>;
     function unflatten(doc: Doc, context: Context): Promise<Doc>;
+    function encode(doc: Doc): Promise<Doc>;
+    function decode(doc: Doc): Promise<Doc>;
 }
 export default Doc;

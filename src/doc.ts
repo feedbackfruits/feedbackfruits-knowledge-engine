@@ -1,5 +1,7 @@
 import { promises as jsonld } from 'jsonld';
 import * as _Context from 'feedbackfruits-knowledge-context';
+import * as Helpers from './helpers';
+import Quad from './quad';
 
 // export type Doc = {
 //   '@id': string
@@ -23,11 +25,28 @@ export module Doc {
   }
 
   export async function expand(doc: Doc, context: Context): Promise<Doc> {
-    return jsonld.expand({ "@context": context, "@graph": doc });
+    return [].concat(jsonld.expand({ "@context": context, "@graph": doc }))[0];
   }
 
   export async function flatten(doc: Doc, context: Context): Promise<Doc[]> {
-    return [].concat(jsonld.flatten({ "@context": context, "@graph": doc }));
+    const quads = await Helpers.docToQuads(await expand(doc, context));
+    // const ids = quads.reduce((memo, { subject }) => ({ [Helpers.decodeIRI(subject)]: true }), {});
+    // console.log('subjects:', ids);
+    // return [ doc ];
+
+
+    // console.log("Stripping quads", quads);
+    // We strip the labels here for a combination of two reasons: we don't need them yet and it makes flattening difficult
+    const strippedOfLabel = quads.map(({ subject, predicate, object }) => ({ subject, predicate, object }));
+
+    // console.log("Stripped of label:", strippedOfLabel)
+    const strippedDoc = await Helpers.quadsToDocs(strippedOfLabel, context);
+
+    // console.log("Flattening stripped doc:", strippedDoc);
+    const flattened = await jsonld.flatten(strippedDoc);
+    const compacted = Promise.all(flattened.map(doc => compact(doc, context)));
+
+    return compacted;
   }
 
   export async function unflatten(doc: Doc, context: Context): Promise<Doc> {
@@ -55,6 +74,16 @@ export module Doc {
 //     return triple;
 //   });
 //
+
+  export async function encode(doc: Doc): Promise<Doc> {
+    return null;
+    // console.log('Mapping with send');
+    // if (!(typeof doc["@id"] === 'string')) throw new Error(`Trying to send a doc without an @id`);
+  }
+
+  export async function decode(doc: Doc): Promise<Doc> {
+    return null;
+  }
 }
 
 export default Doc;

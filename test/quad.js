@@ -21,7 +21,7 @@ test('Quad.isQuad', t => {
 });
 
 
-test('Quad.quadsToNQuads', t => {
+test('Quad.toNQuads', t => {
   const res = Quad.toNQuads(Support.quads);
   // console.log(JSON.stringify(res));
   return t.deepEqual(res, Support.nquads);

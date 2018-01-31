@@ -64,9 +64,13 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@^8.0.10", "@types/node@^8.0.14", "@types/node@^8.0.8":
+"@types/node@*", "@types/node@^8.0.14", "@types/node@^8.0.8":
   version "8.0.53"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
+
+"@types/node@^9.4.0":
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.0.tgz#b85a0bcf1e1cc84eb4901b7e96966aedc6f078d1"
 
 abbrev@1:
   version "1.1.1"
@@ -2785,12 +2789,12 @@ mem@^1.1.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-"memux@github:knowledge-express/memux#~0.4.1":
-  version "0.4.1"
-  resolved "https://codeload.github.com/knowledge-express/memux/tar.gz/996276da976983acb77ce23dfec19e643a31fd82"
+memux@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/memux/-/memux-0.4.2.tgz#81baca3d1d1a1590240a02d1fbd36a0a3793a3c4"
   dependencies:
     "@reactivex/rxjs" "^5.4.2"
-    "@types/node" "^8.0.10"
+    "@types/node" "^9.4.0"
     "@types/node-uuid" "^0.0.28"
     no-kafka "^3.2.0"
     node-uuid "^1.4.8"
