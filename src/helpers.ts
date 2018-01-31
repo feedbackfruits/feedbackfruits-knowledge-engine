@@ -14,6 +14,10 @@ export function encodeIRI(str: string) {
   return str;
 }
 
+export function isURI(str: string) {
+  return /\w+:(\/?\/?)[^\s]+/.test(str);
+}
+
 export function isIRI(str: string) {
   return /<(.*)>/.test(str);
 }

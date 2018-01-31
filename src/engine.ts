@@ -30,11 +30,9 @@ export async function createSend(config: EngineConfig): Promise<SendFn<Doc>> {
   });
 
   return async (operation: memux.Operation<Doc>) => {
-    // console.log('Sending operation', operation);
     const { data } = operation;
-    // console.log('Compating operation...');
-    const compacted = await Doc.compact(data, Context.context);
-    const flattened = await Doc.flatten(compacted, Context.context);
+    await Doc.validate(data, Context.context); // This will throw an Error is doc is invalid
+    const flattened = await Doc.flatten(data, Context.context);
     // console.log('Flattening operation...');
 
     // console.log('Sending all flattened docs:', flattened);
