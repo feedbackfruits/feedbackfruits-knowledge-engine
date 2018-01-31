@@ -11,9 +11,50 @@ export type Doc = object;
 export type Context = typeof _Context.context;
 
 export module Doc {
-  export const isDoc = (doc: object): doc is Doc => {
+  export function isDoc(doc: object): doc is Doc {
     return doc != null && typeof doc['@id'] === 'string';
   };
+
+  export function _keys(doc: Doc): Object {
+    if (doc instanceof Array) return doc.reduce((memo, d) => {
+      return { ...memo, ..._keys(d) };
+    }, {});
+
+    if (typeof doc === 'object') return Object.keys(doc).reduce((memo, key) => {
+      // Skip JSON-LD keys
+      if (key[0] !== "@") memo[key] = true;
+
+      const value = doc[key];
+      return { ...memo, ..._keys(value)};
+      // // if (typeof key === 'object')
+      // return memo;
+    }, {});
+
+    return {};
+  }
+
+  export function keys(doc: Doc): string[] {
+    return Object.keys(_keys(doc));
+  }
+
+  export async function validate(doc: Doc, context: Context): Promise<boolean> {
+    // const compacted = await compact(doc, context);
+    const flattened = await flatten(doc, context);
+    const docKeys = keys(flattened);
+    const isValid = docKeys.reduce((memo, key) => {
+      if (Helpers.isURI(key)) throw new Error(`Doc contains invalid key "${key}".`);
+      return memo;
+    }, true);
+    return isValid;
+  }
+
+  export async function isValid(doc: Doc, context: Context) {
+    try {
+      return validate(doc, context);
+    } catch(e) {
+      return false;
+    }
+  }
 
   export async function compact(doc: Doc, context: Context): Promise<Doc> {
     const res = await jsonld.compact(await expand(doc, context), context);
