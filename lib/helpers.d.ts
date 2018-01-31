@@ -1,12 +1,9 @@
 import Quad from './quad';
 import Doc from './doc';
-import * as memux from 'memux';
 export declare function iriify(str: string): string;
 export declare function encodeIRI(str: string): string;
 export declare function isIRI(str: string): boolean;
 export declare function decodeIRI(str: string): string;
-export declare function createSend(config: memux.SendConfig<Doc>): (operation: memux.Operation<Doc>) => Promise<memux.Operation<Doc>>;
-export declare function createReceive(config: memux.SourceConfig<Doc>): () => Promise<void>;
 export declare function getDoc(config: any, subject: any): Promise<Doc>;
 export declare const quadsToDocs: (quads: Quad[], context: any) => Promise<object>;
 export declare const docToQuads: (doc: object) => Promise<Quad[]>;

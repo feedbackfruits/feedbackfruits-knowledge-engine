@@ -21,7 +21,7 @@ export async function createSend(config: EngineConfig): Promise<SendFn<Doc>> {
   };
 
   // Create default send function with memux
-  const sendFn = await memux.createSend({
+  const sendFn = await memux.createSend<Doc>({
     name: config.NAME,
     url: config.KAFKA_ADDRESS,
     topic: config.OUTPUT_TOPIC,
@@ -30,13 +30,21 @@ export async function createSend(config: EngineConfig): Promise<SendFn<Doc>> {
   });
 
   return async (operation: memux.Operation<Doc>) => {
+    // console.log('Sending operation', operation);
     const { data } = operation;
+    // console.log('Compating operation...');
     const compacted = await Doc.compact(data, Context.context);
     const flattened = await Doc.flatten(compacted, Context.context);
+    // console.log('Flattening operation...');
 
-    return Promise.all(flattened.map(doc => {
-      return sendFn({ ...operation, data: doc });
-    })).then(() => {});
+    // console.log('Sending all flattened docs:', flattened);
+    await Promise.all(flattened.map(async doc => {
+      // console.log('Mapping with send');
+      if (!(typeof doc["@id"] === 'string')) throw new Error(`Trying to send a doc without an @id`);
+      return sendFn({ ...operation, data: doc, key: doc["@id"] });
+    }));
+
+    // console.log('Done sending...');
   };
 }
 
@@ -49,9 +57,10 @@ export async function createReceive(config: EngineConfig & { send: SendFn<Doc>, 
 
   const _receive = async (operation: memux.Operation<Doc>): Promise<void> => {
     const { data } = operation;
-    const expanded = await Doc.expand(data, Context.context);
+    const expanded = (await Doc.expand(data, Context.context))[0];
 
-    return config.receive(config.send)({ ...operation, data: expanded });
+    const receiver = await config.receive(config.send);
+    return receiver({ ...operation, data: expanded });
   }
 
   return memux.createReceive({

@@ -23,22 +23,6 @@ export function decodeIRI(str: string) {
   return str;
 }
 
-export function createSend(config: memux.SendConfig<Doc>): (operation: memux.Operation<Doc>) => Promise<memux.Operation<Doc>> {
-  return async ({ action, key, data}) => {
-    const sendFn = await memux.createSend(config);
-
-    const compactedDoc = await Doc.compact(data, { "@context": [] });
-
-    return sendFn({ action, key, data: compactedDoc });
-  };
-}
-
-export function createReceive(config: memux.SourceConfig<Doc>) {
-  return async () => {
-    const receiveFn = await memux.createReceive(config);
-  };
-}
-
 export async function getDoc(config, subject): Promise<Doc> {
   const { CAYLEY_ADDRESS } = config;
 

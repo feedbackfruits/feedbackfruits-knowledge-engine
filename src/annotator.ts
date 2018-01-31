@@ -1,4 +1,4 @@
-import { createReceive, createSend, MemuxConfig, Operation } from 'memux';
+import { Operation } from 'memux';
 import * as Engine from './engine';
 import * as Config from './config';
 import { Doc } from './doc';
@@ -11,9 +11,6 @@ export type AnnotatorOptions = {
 
 export async function Annotator({ name, receive, customConfig = {} }: AnnotatorOptions): Promise<void> {
   const config = Object.assign({}, Config.Base, Config.Annotator, customConfig);
-
   const send = await Engine.createSend(config);
   return await Engine.createReceive({ ...config, send, receive });
-
-  // return send;
 }
