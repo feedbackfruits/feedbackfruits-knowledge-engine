@@ -40,6 +40,7 @@ export module Doc {
   export async function validate(doc: Doc, context: Context): Promise<boolean> {
     // const compacted = await compact(doc, context);
     const flattened = await flatten(doc, context);
+    // console.log('Flattened:', flattened);
     const docKeys = keys(flattened);
     const isValid = docKeys.reduce((memo, key) => {
       if (Helpers.isURI(key)) throw new Error(`Doc contains invalid key "${key}".`);
@@ -70,7 +71,10 @@ export module Doc {
   }
 
   export async function flatten(doc: Doc, context: Context): Promise<Doc[]> {
-    const quads = await Helpers.docToQuads(await expand(doc, context));
+    const expanded = await expand(await compact(doc, context), context);
+    // console.log(JSON.stringify(expanded));
+    const quads = await Helpers.docToQuads(expanded);
+    // console.log(quads);
     // const ids = quads.reduce((memo, { subject }) => ({ [Helpers.decodeIRI(subject)]: true }), {});
     // console.log('subjects:', ids);
     // return [ doc ];

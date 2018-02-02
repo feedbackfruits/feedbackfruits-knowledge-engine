@@ -33,20 +33,28 @@ test('Doc.keys: it return keys', t => {
   ]);
 });
 
-test('Doc.validate: it validates', t => {
-  return Doc.validate(Support.expanded, Support.context).then(res => {
+test('Doc.validate: it validates', async t => {
+  // const flattened = await Doc.flatten(Support.annotatedYTVideo, Support.context);
+  // console.log(flattened);
+  return Doc.validate(Support.annotatedYTVideo, Support.context).then(res => {
     return t.deepEqual(res, true);
   });
 });
 
 test('Doc.validate: it throws errors', async t => {
-  const error = await t.throws(Doc.validate({ ...Support.expanded, ["http://blabla.com/fake"]: "someValue" }, Support.context));
+  const error = await t.throws(Doc.validate({ ...Support.annotatedYTVideo, ["http://blabla.com/fake"]: "someValue" }, Support.context));
   return t.is(error.message, `Doc contains invalid key "http://blabla.com/fake".`);
 });
 
 test('Doc.compact: it compacts', t => {
   return Doc.compact(Support.expanded, Support.context).then(res => {
     return t.deepEqual(res, Support.compacted);
+  })
+});
+
+test('Doc.compact: it compacts complex things', t => {
+  return Doc.compact(Support.expandedAnnotatedYTVideo, Support.context).then(res => {
+    return t.deepEqual(res, Support.annotatedYTVideo);
   })
 });
 
@@ -59,6 +67,12 @@ test('Doc.compact: you only compact once', t => {
 test('Doc.expand: it expands', t => {
   return Doc.expand(Support.compacted, Support.context).then(res => {
     return t.deepEqual(res, Support.expanded);
+  })
+});
+
+test('Doc.expand: it expands complex things', t => {
+  return Doc.expand(Support.annotatedYTVideo, Support.context).then(res => {
+    return t.deepEqual(res, Support.expandedAnnotatedYTVideo);
   })
 });
 
