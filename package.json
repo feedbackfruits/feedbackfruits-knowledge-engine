@@ -47,7 +47,7 @@
   "dependencies": {
     "@types/node": "^8.0.14",
     "dotenv": "^4.0.0",
-    "feedbackfruits-knowledge-context": "feedbackfruits/feedbackfruits-knowledge-context#~1.1.1",
+    "feedbackfruits-knowledge-context": "feedbackfruits/feedbackfruits-knowledge-context#^1.1.2",
     "isuri": "^2.0.3",
     "jsonld": "^0.4.12",
     "memux": "^0.4.2",

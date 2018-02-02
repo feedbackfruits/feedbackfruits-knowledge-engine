@@ -69,6 +69,7 @@ export const quadsToDocs = async (quads: Array<Quad>, context: any): Promise<Doc
   return Doc.expand(doc, context);
 };
 
+// FIXME: I break on blank nodes
 export const docToQuads = async (doc: Doc): Promise<Quad[]> => {
   const nquads = await jsonld.toRDF(doc, { format: 'application/nquads' });
   // console.log('Parsing nquads:', nquads);
