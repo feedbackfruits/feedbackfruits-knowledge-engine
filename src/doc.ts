@@ -73,7 +73,7 @@ export module Doc {
   export async function flatten(doc: Doc, context: Context): Promise<Doc[]> {
     const expanded = await expand(await compact(doc, context), context);
     // console.log(JSON.stringify(expanded));
-    const quads = await Helpers.docToQuads(expanded);
+    const quads = await toQuads(expanded);
     // console.log(quads);
     // const ids = quads.reduce((memo, { subject }) => ({ [Helpers.decodeIRI(subject)]: true }), {});
     // console.log('subjects:', ids);
@@ -85,7 +85,7 @@ export module Doc {
     const strippedOfLabel = quads.map(({ subject, predicate, object }) => ({ subject, predicate, object }));
 
     // console.log("Stripped of label:", strippedOfLabel)
-    const strippedDoc = await Helpers.quadsToDocs(strippedOfLabel, context);
+    const strippedDoc = await fromQuads(strippedOfLabel, context);
 
     // console.log("Flattening stripped doc:", strippedDoc);
     const flattened = await jsonld.flatten(strippedDoc);
@@ -99,36 +99,27 @@ export module Doc {
     // return null;
   }
 
-// // The result of this function is based on the expected input of
-// // the jsonld library to produce the quads we want.
-// export const quadsToDocs = async (quads: Array<Quad>, context: Context): Promise<Doc> => {
-//   const nquads = quadsToNQuads(quads);
-//   const doc = await jsonld.fromRDF(nquads);
-//   return expand(doc, context);
-// };
-//
-// export const docToQuads = async (doc: Doc): Promise<Quad[]> => {
-//   const nquads = await jsonld.toRDF(doc, { format: 'application/nquads' });
-//   // console.log('Parsing nquads:', nquads);
-//   const lines = nquads.split('\n');
-//   lines.pop() // Remove empty newline
-//   const quads = lines.map(line => {
-//     const [ subject, predicate, object, label ] = line.split(/ (?=["<\.])/);
-//     const triple = { subject, predicate, object: (object[0] === "<" && object[object.length - 1] == ">") ? object : JSON.parse(object) };
-//     if (label !== '.') return { ...triple, label };
-//     return triple;
-//   });
-//
 
-  export async function encode(doc: Doc): Promise<Doc> {
-    return null;
-    // console.log('Mapping with send');
-    // if (!(typeof doc["@id"] === 'string')) throw new Error(`Trying to send a doc without an @id`);
-  }
+  export async function fromQuads(quads: Array<Quad>, context: any): Promise<Doc> {
+    const nquads = Quad.toNQuads(quads);
+    const doc = await jsonld.fromRDF(nquads);
+    return Doc.expand(doc, context);
+  };
 
-  export async function decode(doc: Doc): Promise<Doc> {
-    return null;
-  }
+  export async function toQuads(doc: Doc): Promise<Quad[]> {
+    const nquads = await jsonld.toRDF(doc, { format: 'application/nquads' });
+    return Quad.fromNQuads(nquads).reverse();
+  };
+
+  // export async function encode(doc: Doc): Promise<Doc> {
+  //   return null;
+  //   // console.log('Mapping with send');
+  //   // if (!(typeof doc["@id"] === 'string')) throw new Error(`Trying to send a doc without an @id`);
+  // }
+  //
+  // export async function decode(doc: Doc): Promise<Doc> {
+  //   return null;
+  // }
 }
 
 export default Doc;

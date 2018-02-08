@@ -33,6 +33,19 @@ test('Doc.keys: it return keys', t => {
   ]);
 });
 
+test('Doc.fromQuads', t => {
+  return Doc.fromQuads(Support.quads, Support.context).then(res => {
+    return t.deepEqual(res, Support.expanded);
+  })
+});
+
+test('Doc.toQuads', async (t) => {
+  return Doc.toQuads(Support.expanded).then(res => {
+    // console.log(JSON.stringify(res));
+    return t.deepEqual(res , Support.quads);
+  })
+});
+
 test('Doc.validate: it validates', async t => {
   // const flattened = await Doc.flatten(Support.annotatedYTVideo, Support.context);
   // console.log(flattened);

@@ -6,27 +6,23 @@ import memux from 'memux';
 import * as Config from '../lib/config';
 import * as Support from './support';
 
-const { NAME, KAFKA_ADDRESS, INPUT_TOPIC, OUTPUT_TOPIC } = Object.assign({}, Config.Base, Config.Annotator);
-
-async function init({ name }) {
-  const receive = async (send) => async (operation) => {
-    console.log('Received!', operation, typeof send);
-    const { action, data } = operation;
-    return send({ action, key: data['@id'], data });
-  };
-
-  return Annotator({
-    name,
-    receive
-  });
-}
 
 test('it sends', async (t) => {
   try {
-    const waitingPromise = new Promise((resolve) => {
-      setTimeout(() => resolve(), 5000);
-    });
-    await waitingPromise;
+    const { NAME, KAFKA_ADDRESS, INPUT_TOPIC, OUTPUT_TOPIC } = Object.assign({}, Config.Base, Config.Annotator);
+
+    async function init({ name }) {
+      const receive = async (send) => async (operation) => {
+        console.log('Received!', operation, typeof send);
+        const { action, data } = operation;
+        return send({ action, key: data['@id'], data });
+      };
+
+      return Annotator({
+        name,
+        receive
+      });
+    }
 
     let _resolve, _reject;
     const resultPromise = new Promise((resolve, reject) => {
@@ -58,6 +54,12 @@ test('it sends', async (t) => {
     await init({
       name: NAME,
     });
+
+    // const waitingPromise = new Promise((resolve) => {
+    //   setTimeout(() => resolve(), 7000);
+    // });
+    //
+    // await waitingPromise;
 
     const operation = { action: 'write', key: Support.compacted["@graph"][0]["@id"], data: Support.compacted}
 

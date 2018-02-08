@@ -7,6 +7,7 @@ export declare type Quad = {
 };
 export declare module Quad {
     const isQuad: (quad: object) => quad is Quad;
+    function fromNQuads(nquads: NQuads): Quad[];
     const toNQuads: (quads: Quad[]) => string;
 }
 export default Quad;

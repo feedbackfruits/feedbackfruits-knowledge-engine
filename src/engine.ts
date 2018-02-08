@@ -31,7 +31,6 @@ export async function createSend(config: EngineConfig): Promise<SendFn<Doc>> {
 
   return async (operation: memux.Operation<Doc>) => {
     const { data } = operation;
-    await Doc.validate(data, Context.context); // This will throw an Error is doc is invalid
     const flattened = await Doc.flatten(data, Context.context);
     // console.log('Flattening operation...');
 
@@ -39,6 +38,7 @@ export async function createSend(config: EngineConfig): Promise<SendFn<Doc>> {
     await Promise.all(flattened.map(async doc => {
       // console.log('Mapping with send');
       if (!(typeof doc["@id"] === 'string')) throw new Error(`Trying to send a doc without an @id`);
+      await Doc.validate(doc, Context.context); // This will throw an Error is doc is invalid
       return sendFn({ ...operation, data: doc, key: doc["@id"] });
     }));
 

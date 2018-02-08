@@ -1,7 +1,7 @@
 import Quad from './quad';
 import Doc from './doc';
 import { promises as jsonld } from 'jsonld';
-import * as isuri from 'isuri';
+// import * as isuri from 'isuri';
 import * as memux from 'memux';
 import * as Context from 'feedbackfruits-knowledge-context';
 
@@ -10,11 +10,12 @@ export function iriify(str: string) {
 }
 
 export function encodeIRI(str: string) {
-  if (isuri.isValid(str)) return iriify(str);
+  if (isURI(str)) return iriify(str);
   return str;
 }
 
 export function isURI(str: string) {
+  // isuri.isValid(str)
   return /\w+:(\/?\/?)[^\s]+/.test(str);
 }
 
@@ -58,30 +59,5 @@ export async function getDoc(config, subject): Promise<Doc> {
   });
   const { result: quads = [] } = await response.json();
 
-  return quadsToDocs(quads, Context.context);
+  return Doc.fromQuads(quads, Context.context);
 }
-
-// The result of this function is based on the expected input of
-// the jsonld library to produce the quads we want.
-export const quadsToDocs = async (quads: Array<Quad>, context: any): Promise<Doc> => {
-  const nquads = Quad.toNQuads(quads);
-  const doc = await jsonld.fromRDF(nquads);
-  return Doc.expand(doc, context);
-};
-
-// FIXME: I break on blank nodes
-export const docToQuads = async (doc: Doc): Promise<Quad[]> => {
-  const nquads = await jsonld.toRDF(doc, { format: 'application/nquads' });
-  // console.log('Parsing nquads:', nquads);
-  const lines = nquads.split('\n');
-  lines.pop() // Remove empty newline
-  const quads = lines.map(line => {
-    const [ subject, predicate, object, label ] = line.split(/ (?=["<\.])/);
-    const triple = { subject, predicate, object: (object[0] === "<" && object[object.length - 1] == ">") ? object : JSON.parse(object) };
-    if (label !== '.') return { ...triple, label };
-    return triple;
-  });
-
-  // We reverse the quads to preserve the order of the types (and possibly other things)
-  return quads.reverse();
-};

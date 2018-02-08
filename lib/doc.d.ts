@@ -1,4 +1,5 @@
 import * as _Context from 'feedbackfruits-knowledge-context';
+import Quad from './quad';
 export declare type Doc = object;
 export declare type Context = typeof _Context.context;
 export declare module Doc {
@@ -11,7 +12,7 @@ export declare module Doc {
     function expand(doc: Doc, context: Context): Promise<Doc>;
     function flatten(doc: Doc, context: Context): Promise<Doc[]>;
     function unflatten(doc: Doc, context: Context): Promise<Doc>;
-    function encode(doc: Doc): Promise<Doc>;
-    function decode(doc: Doc): Promise<Doc>;
+    function fromQuads(quads: Array<Quad>, context: any): Promise<Doc>;
+    function toQuads(doc: Doc): Promise<Quad[]>;
 }
 export default Doc;

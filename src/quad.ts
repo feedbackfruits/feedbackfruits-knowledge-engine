@@ -1,3 +1,4 @@
+import * as n3 from 'n3';
 import * as Helpers from './helpers';
 
 export type NQuads = string;
@@ -19,10 +20,24 @@ export module Quad {
   };
 
 
+export function fromNQuads(nquads: NQuads): Quad[] {
+  const parser = n3.Parser();
+  const quads = (<n3.Triple[]><any>parser.parse(nquads, null)).map(({ subject, predicate, object, graph}) => {
+    return {
+      subject,
+      predicate,
+      object,
+      label: graph
+    }
+  }); //.reverse();
+
+  return quads;
+}
+
 export const toNQuads = (quads: Quad[]): NQuads => {
   return quads.map(quad => {
     const { subject, predicate, object, label } = quad;
-    return `${subject} ${predicate} ${Helpers.isIRI(object) ? object : JSON.stringify(object)} ${label ? label : ''} .\n`;
+    return `${Helpers.iriify(subject)} ${Helpers.iriify(predicate)} ${Helpers.encodeIRI(object)} ${label ? Helpers.iriify(label) : ''} .\n`;
   }).join('');
 };
 

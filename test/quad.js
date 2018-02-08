@@ -20,9 +20,14 @@ test('Quad.isQuad', t => {
   t.not(Quad.isQuad(notQuad), true);
 });
 
+test('Quad.fromNQuads', t => {
+  const res = Quad.fromNQuads(Support.nquads);
+  console.log(JSON.stringify(res));
+  return t.deepEqual(res, Support.quads);
+})
 
 test('Quad.toNQuads', t => {
   const res = Quad.toNQuads(Support.quads);
-  // console.log(JSON.stringify(res));
+  // console.log(res);
   return t.deepEqual(res, Support.nquads);
 })
