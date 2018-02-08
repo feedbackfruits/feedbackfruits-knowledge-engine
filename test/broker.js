@@ -5,33 +5,28 @@ import memux from 'memux';
 import * as Config from '../lib/config';
 import * as Support from './support';
 
-const { NAME, KAFKA_ADDRESS, INPUT_TOPIC } = Object.assign({}, Config.Base, Config.Broker);
-
-const operation = { action: 'write', key: Support.compacted["@graph"][0]["@id"], data: Support.compacted["@graph"][0]}
-let _resolve, _reject;
-const resultPromise = new Promise((resolve, reject) => {
-  _resolve = resolve;
-  _reject = reject;
-});
-
-async function init({ name }) {
-  const receive = async (operation) => {
-    console.log('Received!', operation, typeof send);
-    _resolve(operation);
-  };
-
-  return Broker({
-    name,
-    receive
-  });
-}
 
 test('it works', async (t) => {
   try {
-    const waitingPromise = new Promise((resolve) => {
-      setTimeout(() => resolve(), 5000);
+    const { NAME, KAFKA_ADDRESS, INPUT_TOPIC } = Object.assign({}, Config.Base, Config.Broker);
+    const operation = { action: 'write', key: Support.compacted["@graph"][0]["@id"], data: Support.compacted["@graph"][0]}
+    let _resolve, _reject;
+    const resultPromise = new Promise((resolve, reject) => {
+      _resolve = resolve;
+      _reject = reject;
     });
-    await waitingPromise;
+
+    async function init({ name }) {
+      const receive = async (operation) => {
+        console.log('Received!', operation, typeof send);
+        _resolve(operation);
+      };
+
+      return Broker({
+        name,
+        receive
+      });
+    }
 
     const send = await memux({
       name: 'dummy-broker',

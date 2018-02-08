@@ -45,12 +45,14 @@
   },
   "homepage": "https://github.com/feedbackfruits/feedbackfruits-knowledge-engine#readme",
   "dependencies": {
+    "@types/n3": "^0.0.3",
     "@types/node": "^8.0.14",
     "dotenv": "^4.0.0",
     "feedbackfruits-knowledge-context": "feedbackfruits/feedbackfruits-knowledge-context#^1.1.2",
     "isuri": "^2.0.3",
     "jsonld": "^0.4.12",
     "memux": "^0.4.2",
+    "n3": "^0.11.2",
     "tslint": "^5.5.0",
     "typescript": "^2.4.1"
   },
