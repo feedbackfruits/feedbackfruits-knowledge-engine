@@ -1,8 +1,14 @@
 import test from 'ava';
 import * as Engine from '../lib';
 
+import * as Context from 'feedbackfruits-knowledge-context';
+
 test('it exists', t => {
   t.not(Engine, undefined);
+});
+
+test('it re-exports feedbackfruits-knowledge-context', t => {
+  t.is(Engine.Context, Context);
 });
 
 test('it has a Miner function', t => {
