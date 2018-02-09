@@ -95,8 +95,9 @@ test('Doc.expand: you only expand once', t => {
   })
 });
 
-// test('Doc.flatten: it flattens', t => {
-//   return Doc.expand(Support.expanded, Support.context).then(res => {
-//     return t.deepEqual(res, Support.expanded);
-//   })
-// });
+test('Doc.flatten: it flattens', t => {
+  return Doc.flatten(Support.taggedExpandedYTVideo, Support.context).then(res => {
+    // console.log(JSON.stringify(res));
+    return t.deepEqual(Support.sort(res), Support.sort(Support.flattenedTaggedCompactedYTVideo));
+  })
+});

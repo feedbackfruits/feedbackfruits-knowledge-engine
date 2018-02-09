@@ -75,8 +75,8 @@ export module Doc {
     // console.log(JSON.stringify(expanded));
     const quads = await toQuads(expanded);
     // console.log(quads);
-    // const ids = quads.reduce((memo, { subject }) => ({ [Helpers.decodeIRI(subject)]: true }), {});
-    // console.log('subjects:', ids);
+    // const objects = Object.keys(quads.reduce((memo, { object }) => ({ ...memo, [Helpers.decodeIRI(object)]: true }), {}));
+    // console.log('objects:', objects.join('\n'));
     // return [ doc ];
 
 
@@ -94,15 +94,16 @@ export module Doc {
     return compacted;
   }
 
-  export async function unflatten(doc: Doc, context: Context): Promise<Doc> {
-    throw new Error('Not implemented.');
-    // return null;
-  }
+  // export async function unflatten(doc: Doc, context: Context): Promise<Doc> {
+  //   throw new Error('Not implemented.');
+  //   // return null;
+  // }
 
 
   export async function fromQuads(quads: Array<Quad>, context: any): Promise<Doc> {
     const nquads = Quad.toNQuads(quads);
-    const doc = await jsonld.fromRDF(nquads);
+    // console.log('fromQuads:', nquads);
+    const doc = await jsonld.fromRDF(nquads, { useNativeTypes: true });
     return Doc.expand(doc, context);
   };
 
