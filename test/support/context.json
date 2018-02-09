@@ -52,14 +52,19 @@
       "duration": "https://knowledge.express/duration",
       "language": "https://knowledge.express/language",
       "VideoCaption": "https://knowledge.express/VideoCaption",
-      "fieldOfStudy": {
-        "@id": "https://knowledge.express/fieldOfStudy",
+      "sameAsEntity": {
+        "@id": "https://knowledge.express/sameAsEntity",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "subjectOf": {
+        "@id": "https://knowledge.express/subjectOf",
         "@type": "@id",
         "@container": "@set"
       },
       "Entity": "https://knowledge.express/Entity",
-      "entity": {
-        "@id": "https://knowledge.express/entity",
+      "sameAsFieldOfStudy": {
+        "@id": "https://knowledge.express/sameAsFieldOfStudy",
         "@type": "@id",
         "@container": "@set"
       },
@@ -69,6 +74,16 @@
         "@container": "@set"
       },
       "Topic": "https://knowledge.express/Topic",
+      "tagOf": {
+        "@id": "https://knowledge.express/tagOf",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "about": {
+        "@id": "https://knowledge.express/about",
+        "@type": "@id",
+        "@container": "@set"
+      },
       "score": "https://knowledge.express/score",
       "previous": {
         "@id": "https://knowledge.express/previous",

@@ -21,6 +21,7 @@ export module Quad {
 
 
 export function fromNQuads(nquads: NQuads): Quad[] {
+  // console.log('fromNQuads:', nquads);
   const parser = n3.Parser();
   const quads = (<n3.Triple[]><any>parser.parse(nquads, null)).map(({ subject, predicate, object, graph}) => {
     return {
@@ -29,7 +30,7 @@ export function fromNQuads(nquads: NQuads): Quad[] {
       object,
       label: graph
     }
-  }); //.reverse();
+  });
 
   return quads;
 }
@@ -37,7 +38,7 @@ export function fromNQuads(nquads: NQuads): Quad[] {
 export const toNQuads = (quads: Quad[]): NQuads => {
   return quads.map(quad => {
     const { subject, predicate, object, label } = quad;
-    return `${Helpers.iriify(subject)} ${Helpers.iriify(predicate)} ${Helpers.encodeIRI(object)} ${label ? Helpers.iriify(label) : ''} .\n`;
+    return `${Helpers.iriify(subject)} ${Helpers.iriify(predicate)} ${Helpers.encodeRDF(object)} ${label ? Helpers.iriify(label) : ''} .\n`;
   }).join('');
 };
 

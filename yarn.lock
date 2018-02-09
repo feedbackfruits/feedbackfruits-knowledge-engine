@@ -884,6 +884,10 @@ binary-extensions@^1.0.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.11.0.tgz#46aa1751fb6a2f93ee5e689bb1087d4b14c6c205"
 
+bindings@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.3.0.tgz#b346f6ecf6a95f5a815c5839fc7cdb22502f1ed7"
+
 bl@~0.9.0:
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/bl/-/bl-0.9.5.tgz#c06b797af085ea00bc527afc8efcf11de2232054"
@@ -1500,10 +1504,6 @@ es-to-primitive@^1.1.1:
 es6-error@^4.0.1, es6-error@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/es6-error/-/es6-error-4.0.2.tgz#eec5c726eacef51b7f6b73c20db6e1b13b069c98"
-
-es6-promise@^2.0.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-2.3.0.tgz#96edb9f2fdb01995822b263dd8aadab6748181bc"
 
 es6-promise@^3.3.1:
   version "3.3.1"
@@ -2498,13 +2498,13 @@ jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
 
-jsonld@^0.4.12:
-  version "0.4.12"
-  resolved "https://registry.yarnpkg.com/jsonld/-/jsonld-0.4.12.tgz#a02f205d5341414df1b6d8414f1b967a712073e8"
+jsonld@^0.5.18:
+  version "0.5.18"
+  resolved "https://registry.yarnpkg.com/jsonld/-/jsonld-0.5.18.tgz#6de79f1eca5c1cdc411133699e46479010a49ecf"
   dependencies:
-    es6-promise "^2.0.0"
-    pkginfo "~0.4.0"
-    request "^2.61.0"
+    rdf-canonize "^0.2.1"
+    request "^2.83.0"
+    semver "^5.5.0"
     xmldom "0.1.19"
 
 jsonpointer@^4.0.0:
@@ -2929,7 +2929,7 @@ n3@^0.11.2:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/n3/-/n3-0.11.2.tgz#25cb2ef1b75b38cbfcc1979cf92e2bdba7f183e0"
 
-nan@^2.3.0:
+nan@^2.3.0, nan@^2.7.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.8.0.tgz#ed715f3fe9de02b57a5e6252d90a96675e1f085a"
 
@@ -2963,6 +2963,10 @@ no-kafka@^3.2.0:
     murmur-hash-js "^1.0.0"
     nice-simple-logger "^1.0.1"
     wrr-pool "^1.0.3"
+
+node-forge@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.7.1.tgz#9da611ea08982f4b94206b3beb4cc9665f20c300"
 
 node-pre-gyp@^0.6.39:
   version "0.6.39"
@@ -3395,10 +3399,6 @@ pkg-up@^1.0.0:
   dependencies:
     find-up "^1.0.0"
 
-pkginfo@~0.4.0:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/pkginfo/-/pkginfo-0.4.1.tgz#b5418ef0439de5425fc4995042dced14fb2a84ff"
-
 plur@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/plur/-/plur-1.0.0.tgz#db85c6814f5e5e5a3b49efc28d604fec62975156"
@@ -3492,6 +3492,15 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+rdf-canonize@^0.2.1:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/rdf-canonize/-/rdf-canonize-0.2.3.tgz#c89f3cd5823bb430e0060d714125ccc8febdf6c9"
+  dependencies:
+    bindings "^1.3.0"
+    nan "^2.7.0"
+    node-forge "^0.7.1"
+    semver "^5.4.1"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -3723,7 +3732,7 @@ request@2.81.0:
     tunnel-agent "^0.6.0"
     uuid "^3.0.0"
 
-request@>=2.42.0, request@^2.61.0:
+request@>=2.42.0, request@^2.83.0:
   version "2.83.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
   dependencies:
@@ -3850,6 +3859,10 @@ semver-diff@^2.0.0:
 "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
+
+semver@^5.4.1, semver@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"

@@ -11,7 +11,6 @@ export declare module Doc {
     function compact(doc: Doc, context: Context): Promise<Doc>;
     function expand(doc: Doc, context: Context): Promise<Doc>;
     function flatten(doc: Doc, context: Context): Promise<Doc[]>;
-    function unflatten(doc: Doc, context: Context): Promise<Doc>;
     function fromQuads(quads: Array<Quad>, context: any): Promise<Doc>;
     function toQuads(doc: Doc): Promise<Quad[]>;
 }
