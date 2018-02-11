@@ -9,6 +9,9 @@ import Quad from './quad';
 
 export type Doc = object;
 export type Context = typeof _Context.context;
+export type Frame = {
+  "@context": Context
+} & object;
 
 export module Doc {
   export function isDoc(doc: object): doc is Doc {
@@ -57,6 +60,25 @@ export module Doc {
     }
   }
 
+  export async function compare(a: Doc, b: Doc, context: Context): Promise<number> {
+    // Expanding factors out the context
+    const expandedA = await expand(a, context);
+    const expandedB = await expand(b, context);
+
+    // Quads can be sorted
+    const quadsA = await toQuads(expandedA);
+    const quadsB = await toQuads(expandedB);
+
+    const sortedQuadsA = quadsA.sort(Quad.compare);
+    const sortedQuadsB = quadsB.sort(Quad.compare);
+
+    // String can be easily compared
+    const nquadsA = Quad.toNQuads(sortedQuadsA);
+    const nquadsB = Quad.toNQuads(sortedQuadsB);
+
+    return nquadsA.localeCompare(nquadsB);
+  }
+
   export async function compact(doc: Doc, context: Context): Promise<Doc> {
     const res = await jsonld.compact(await expand(doc, context), context);
 
@@ -92,6 +114,12 @@ export module Doc {
     const compacted = Promise.all(flattened.map(doc => compact(doc, context)));
 
     return compacted;
+  }
+
+  export async function frame(graph: Doc[], frame: Frame) {
+    const docs = await flatten({ "@graph": graph }, frame["@context"]);
+    const framed = await jsonld.frame({ "@graph": docs }, frame);
+    return framed;
   }
 
   // export async function unflatten(doc: Doc, context: Context): Promise<Doc> {
