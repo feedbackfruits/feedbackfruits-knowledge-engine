@@ -47,15 +47,15 @@ test('Doc.toQuads', async (t) => {
 });
 
 test('Doc.validate: it validates', async t => {
-  // const flattened = await Doc.flatten(Support.annotatedYTVideo, Support.context);
+  // const flattened = await Doc.flatten(Support.compactedVideo, Support.context);
   // console.log(flattened);
-  return Doc.validate(Support.annotatedYTVideo, Support.context).then(res => {
+  return Doc.validate(Support.compactedVideo, Support.context).then(res => {
     return t.deepEqual(res, true);
   });
 });
 
 test('Doc.validate: it throws errors', async t => {
-  const error = await t.throws(Doc.validate({ ...Support.annotatedYTVideo, ["http://blabla.com/fake"]: "someValue" }, Support.context));
+  const error = await t.throws(Doc.validate({ ...Support.compactedVideo, ["http://blabla.com/fake"]: "someValue" }, Support.context));
   return t.is(error.message, `Doc contains invalid key "http://blabla.com/fake".`);
 });
 
@@ -66,8 +66,8 @@ test('Doc.compact: it compacts', t => {
 });
 
 test('Doc.compact: it compacts complex things', t => {
-  return Doc.compact(Support.expandedAnnotatedYTVideo, Support.context).then(res => {
-    return t.deepEqual(res, Support.annotatedYTVideo);
+  return Doc.compact(Support.expandedVideo, Support.context).then(res => {
+    return t.deepEqual(res, Support.compactedVideo);
   })
 });
 
@@ -84,8 +84,8 @@ test('Doc.expand: it expands', t => {
 });
 
 test('Doc.expand: it expands complex things', t => {
-  return Doc.expand(Support.annotatedYTVideo, Support.context).then(res => {
-    return t.deepEqual(res, Support.expandedAnnotatedYTVideo);
+  return Doc.expand(Support.compactedVideo, Support.context).then(res => {
+    return t.deepEqual(res, Support.expandedVideo);
   })
 });
 
@@ -96,8 +96,8 @@ test('Doc.expand: you only expand once', t => {
 });
 
 test('Doc.flatten: it flattens', t => {
-  return Doc.flatten(Support.taggedExpandedYTVideo, Support.context).then(res => {
+  return Doc.flatten(Support.taggedExpandedVideo, Support.context).then(res => {
     // console.log(JSON.stringify(res));
-    return t.deepEqual(Support.sort(res), Support.sort(Support.flattenedTaggedCompactedYTVideo));
+    return t.deepEqual(Support.sort(res), Support.sort(Support.flattenedTaggedCompactedVideo));
   })
 });

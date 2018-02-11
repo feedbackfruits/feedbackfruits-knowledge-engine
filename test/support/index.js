@@ -4,12 +4,16 @@ import * as fs from 'fs';
 const expanded = require('./expanded');
 const quads = require('./quads');
 const compacted = require('./compacted');
-const annotatedYTVideo = require('./annotated-yt-video');
-const expandedAnnotatedYTVideo = require('./expanded-annotated-yt-video');
-const taggedExpandedYTVideo = require('./tagged-expanded-yt-video');
-const taggedCompactedYTVideo = require('./tagged-compacted-yt-video');
-const flattenedTaggedExpandedYTVideo = require('./flattened-tagged-expanded-yt-video');
-const flattenedTaggedCompactedYTVideo = require('./flattened-tagged-compacted-yt-video');
+
+const compactedVideo = require('./Video/compacted');
+const expandedVideo = require('./Video/expanded');
+
+const taggedExpandedVideo = require('./Video/expanded-tagged');
+const taggedCompactedVideo = require('./Video/compacted-tagged');
+
+const flattenedTaggedExpandedVideo = require('./Video/flattened-expanded-tagged');
+const flattenedTaggedCompactedVideo = require('./Video/flattened-compacted-tagged');
+
 const context = require('./context');
 
 const nquads = fs.readFileSync(__dirname + '/nquads.nq').toString();
@@ -61,12 +65,12 @@ export {
   compacted,
   quads,
   nquads,
-  annotatedYTVideo,
-  expandedAnnotatedYTVideo,
-  taggedExpandedYTVideo,
-  taggedCompactedYTVideo,
-  flattenedTaggedExpandedYTVideo,
-  flattenedTaggedCompactedYTVideo
+  compactedVideo,
+  expandedVideo,
+  taggedExpandedVideo,
+  taggedCompactedVideo,
+  flattenedTaggedExpandedVideo,
+  flattenedTaggedCompactedVideo
 };
 
 // This is a bit hacky, but ava complains otherwise

@@ -6,7 +6,8 @@ export declare type Quad = {
     label?: string;
 };
 export declare module Quad {
-    const isQuad: (quad: object) => quad is Quad;
+    function isQuad(quad: object): quad is Quad;
+    function compare(a: Quad, b: Quad): number;
     function fromNQuads(nquads: NQuads): Quad[];
     const toNQuads: (quads: Quad[]) => string;
 }
