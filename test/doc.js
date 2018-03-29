@@ -59,6 +59,19 @@ test('Doc.validate: it throws errors', async t => {
   return t.is(error.message, `Doc contains invalid key "http://blabla.com/fake".`);
 });
 
+test('Doc.compare: it compares', async t => {
+  t.is(await Doc.compare(Support.expanded, Support.expanded, Support.context), 0);
+  t.is(await Doc.compare(Support.expanded, {}, Support.context), 1);
+  t.is(await Doc.compare({}, Support.expanded, Support.context), -1);
+  return;
+});
+
+test('Doc.compare: it bridges compaction', async t => {
+  t.is(await Doc.compare(Support.compacted, Support.expanded, Support.context), 0);
+  return;
+});
+
+
 test('Doc.compact: it compacts', t => {
   return Doc.compact(Support.expanded, Support.context).then(res => {
     return t.deepEqual(res, Support.compacted);
@@ -100,4 +113,36 @@ test('Doc.flatten: it flattens', t => {
     // console.log(JSON.stringify(res));
     return t.deepEqual(Support.sort(res), Support.sort(Support.flattenedTaggedCompactedVideo));
   })
+});
+
+test('Doc.flatten: you may only flatten once', t => {
+  return Doc.flatten(Support.flattenedTaggedCompactedVideo, Support.context).then(res => {
+    // console.log(JSON.stringify(res));
+    return t.deepEqual(Support.sort(res), Support.sort(Support.flattenedTaggedCompactedVideo));
+  })
+});
+
+// test('Doc.frame: it frames', t => {
+//   const frame = {
+//     "@type": "Resource",
+//   };
+//
+//   return Doc.frame(Support.taggedExpandedVideo, { "@context": Support.context, ...frame }).then(res => {
+//     console.log(JSON.stringify(res));
+//     return t.deepEqual(Support.sort(res), Support.sort([ Support.taggedCompactedVideo ]));
+//   })
+// });
+
+test('Doc.fullfilsFrame: it check if a frame is fullfilled by a graph', async t => {
+  const frame = {
+    "@type": "Resource",
+    "caption": {
+      "@type": "VideoCaption",
+      "text": {}
+    }
+  };
+
+  const res = await Doc.fullfilsFrame(Support.flattenedExpandedVideo.slice(0), { "@context": Support.context, ...frame })
+  console.log(JSON.stringify(res));
+  return t.is(res, true);
 });

@@ -11,7 +11,7 @@ export type Doc = object;
 export type Context = typeof _Context.context;
 export type Frame = {
   "@context": Context
-} & object;
+} & Doc;
 
 export module Doc {
   export function isDoc(doc: object): doc is Doc {
@@ -60,7 +60,7 @@ export module Doc {
     }
   }
 
-  export async function compare(a: Doc, b: Doc, context: Context): Promise<number> {
+  export async function compare(a: Doc, b: Doc, context: Context = { "@context": [] }): Promise<number> {
     // Expanding factors out the context
     const expandedA = await expand(a, context);
     const expandedB = await expand(b, context);
@@ -116,10 +116,25 @@ export module Doc {
     return compacted;
   }
 
-  export async function frame(graph: Doc[], frame: Frame) {
-    const docs = await flatten({ "@graph": graph }, frame["@context"]);
-    const framed = await jsonld.frame({ "@graph": docs }, frame);
-    return framed;
+  export async function frame(graph: Doc[], frame: Frame): Promise<Doc[]> {
+    const flattened = await flatten({ "@graph": graph }, frame["@context"]);
+    const expanded = await Promise.all(flattened.map(doc => expand(doc, frame["@context"])));
+    const framed = await jsonld.frame(expanded, frame);
+    // return flattened;
+    // Strip the context from the framed result
+    // delete framed["@context"];
+
+    return [].concat(framed["@graph"]);
+  }
+
+  export async function fullfilsFrame(graph: Doc[], _frame: Frame): Promise<boolean> {
+    const framed = await frame(graph , _frame);
+    if (framed.length === 0) return false;
+
+    const reframed = await frame(framed, _frame);
+    const compared = await compare(framed, reframed, _frame["@context"]);
+    console.log('Compared frame lengths:', framed.length, reframed.length);
+    return compared === 0;
   }
 
   // export async function unflatten(doc: Doc, context: Context): Promise<Doc> {

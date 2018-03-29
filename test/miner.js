@@ -56,7 +56,7 @@ test('it sends', async (t) => {
     console.log('Waiting for result promise...');
     let result = await resultPromise;
     console.log('Result promise resolved!');
-    return t.deepEqual(result, { action: 'write', key: Support.compacted["@graph"][0]["@id"], data: Support.compacted["@graph"][0], label: NAME });
+    return t.deepEqual(result, { action: 'write', key: Support.compacted["@id"], data: Support.compacted, label: NAME });
   } catch(e) {
     console.error(e);
     throw e;

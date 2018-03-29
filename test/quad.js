@@ -28,6 +28,6 @@ test('Quad.fromNQuads', t => {
 
 test('Quad.toNQuads', t => {
   const res = Quad.toNQuads(Support.quads);
-  // console.log(res);
+  console.log(res);
   return t.deepEqual(res, Support.nquads);
 })
