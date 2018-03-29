@@ -61,12 +61,13 @@ test('it sends', async (t) => {
     //
     // await waitingPromise;
 
-    const operation = { action: 'write', key: Support.compacted["@graph"][0]["@id"], data: Support.compacted}
+    const operation = { action: 'write', key: Support.compacted["@id"], data: Support.compacted}
 
     await send(operation);
 
     let result = await resultPromise;
-    return t.deepEqual(result, { ...operation, data: Support.compacted["@graph"][0], label: NAME });
+    // The annotator expand the message doc upon receiving and compacts it again upon sending
+    return t.deepEqual(result, { ...operation, data: Support.compacted, label: NAME });
   } catch(e) {
     console.error(e);
     throw e;

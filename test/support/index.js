@@ -8,6 +8,8 @@ const compacted = require('./compacted');
 const compactedVideo = require('./Video/compacted');
 const expandedVideo = require('./Video/expanded');
 
+const flattenedExpandedVideo = require('./Video/flattened-expanded');
+
 const taggedExpandedVideo = require('./Video/expanded-tagged');
 const taggedCompactedVideo = require('./Video/compacted-tagged');
 
@@ -67,6 +69,7 @@ export {
   nquads,
   compactedVideo,
   expandedVideo,
+  flattenedExpandedVideo,
   taggedExpandedVideo,
   taggedCompactedVideo,
   flattenedTaggedExpandedVideo,

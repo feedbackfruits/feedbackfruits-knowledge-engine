@@ -9,7 +9,7 @@ import * as Support from './support';
 test('it works', async (t) => {
   try {
     const { NAME, KAFKA_ADDRESS, INPUT_TOPIC } = Object.assign({}, Config.Base, Config.Broker);
-    const operation = { action: 'write', key: Support.compacted["@graph"][0]["@id"], data: Support.compacted["@graph"][0]}
+    const operation = { action: 'write', key: Support.compacted["@id"], data: Support.compacted}
     let _resolve, _reject;
     const resultPromise = new Promise((resolve, reject) => {
       _resolve = resolve;
@@ -45,7 +45,7 @@ test('it works', async (t) => {
     let result = await resultPromise;
     console.log('Result promise resolved!');
     console.log('Result data:', JSON.stringify(result));
-    return t.deepEqual(result, { action: 'write', key: Support.compacted["@graph"][0]["@id"], data: Support.expanded[0]["@graph"][0], label: 'dummy-broker' });
+    return t.deepEqual(result, { action: 'write', key: Support.compacted["@id"], data: Support.expanded[0], label: 'dummy-broker' });
   } catch(e) {
     console.error(e);
     throw e;

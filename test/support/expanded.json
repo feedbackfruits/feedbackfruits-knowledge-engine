@@ -1,44 +1,39 @@
 [
   {
-    "@graph": [
+    "@id": "https://www.youtube.com/watch?v=pi3WWQ0q6Lc",
+    "@type": [
+      "https://knowledge.express/Resource",
+      "http://schema.org/VideoObject"
+    ],
+    "http://schema.org/description": [
       {
-        "@id": "https://www.youtube.com/watch?v=pi3WWQ0q6Lc",
-        "@type": [
-          "https://knowledge.express/Resource",
-          "http://schema.org/VideoObject"
-        ],
-        "http://schema.org/description": [
-          {
-            "@value": "See examples of multiplying and dividing fractions with negative numbers."
-          }
-        ],
-        "http://schema.org/image": [
-          {
-            "@id": "https://cdn.kastatic.org/googleusercontent/vkR4iP2PXl0SGkwmmpX-7N9mKNP7RWX8ilHMuROW745BJBvmp_eElCItbyPY-tweaVYgddFoNaaHpXSanPm92ZUS"
-          }
-        ],
-        "http://schema.org/license": [
-          {
-            "@id": "http://creativecommons.org/licenses/by-nc-sa/3.0"
-          }
-        ],
-        "http://schema.org/name": [
-          {
-            "@value": "Multiplying positive and negative fractions"
-          }
-        ],
-        "http://schema.org/sourceOrganization": [
-          {
-            "@id": "https://www.khanacademy.org/"
-          }
-        ],
-        "https://knowledge.express/topic": [
-          {
-            "@id": "https://www.khanacademy.org/video/multiplying-negative-and-positive-fractions"
-          }
-        ]
+        "@value": "See examples of multiplying and dividing fractions with negative numbers."
       }
     ],
-    "@id": "https://knowledge.express/engines/engine"
+    "http://schema.org/image": [
+      {
+        "@id": "https://cdn.kastatic.org/googleusercontent/vkR4iP2PXl0SGkwmmpX-7N9mKNP7RWX8ilHMuROW745BJBvmp_eElCItbyPY-tweaVYgddFoNaaHpXSanPm92ZUS"
+      }
+    ],
+    "http://schema.org/license": [
+      {
+        "@id": "http://creativecommons.org/licenses/by-nc-sa/3.0"
+      }
+    ],
+    "http://schema.org/name": [
+      {
+        "@value": "Multiplying positive and negative fractions"
+      }
+    ],
+    "http://schema.org/sourceOrganization": [
+      {
+        "@id": "https://www.khanacademy.org/"
+      }
+    ],
+    "https://knowledge.express/topic": [
+      {
+        "@id": "https://www.khanacademy.org/video/multiplying-negative-and-positive-fractions"
+      }
+    ]
   }
 ]
