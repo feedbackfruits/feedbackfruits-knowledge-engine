@@ -122,6 +122,13 @@ test('Doc.flatten: you may only flatten once', t => {
   })
 });
 
+test('Doc.flatten: it flattens things that apparently break without labels', t => {
+  return Doc.flatten(Support.breaksWithoutLabels, Support.context).then(res => {
+    // console.log(JSON.stringify(res));
+    return t.pass();
+  })
+});
+
 // test('Doc.frame: it frames', t => {
 //   const frame = {
 //     "@type": "Resource",

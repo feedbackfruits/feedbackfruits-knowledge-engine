@@ -1,0 +1,67 @@
+{
+  "@id": "https://www.youtube.com/watch?v=1yoOSIcsCyI",
+  "http://schema.org/about": [
+    {
+      "@value": "<http://dbpedia.org/resource/Electron_configuration>"
+    },
+    {
+      "@value": "<http://dbpedia.org/resource/Atom>"
+    },
+    {
+      "@value": "<http://dbpedia.org/resource/Molecular_orbital>"
+    },
+    {
+      "@value": "<http://dbpedia.org/resource/Electron>"
+    },
+    {
+      "@value": "<http://dbpedia.org/resource/Atomic_orbital>"
+    },
+    {
+      "@value": "<http://dbpedia.org/resource/Molecule>"
+    },
+    {
+      "@value": "<http://dbpedia.org/resource/Quantum_mechanics>"
+    },
+    {
+      "@value": "<http://dbpedia.org/resource/Chemical_bond>"
+    }
+  ],
+  "http://schema.org/description": [
+    {
+      "@value": "eCHEM 1A: Online General Chemistry\nCollege of Chemistry, University of California, Berkeley\nhttp://chemistry.berkeley.edu/echem1a\n\nCurriculum and ChemQuizzes developed by Dr. Mark Kubinec and Professor Alexander Pines\nChemical Demonstrations by Lonnie Martin\nVideo Production by Jon Schainker and Scott Vento\nDeveloped with the support of The Camille & Henry Dreyfus Foundation"
+    }
+  ],
+  "http://schema.org/image": [
+    {
+      "@value": "<https://i.ytimg.com/vi/1yoOSIcsCyI/sddefault.jpg>"
+    }
+  ],
+  "http://schema.org/license": [
+    {
+      "@value": "<https://www.youtube.com/static?template=terms>"
+    }
+  ],
+  "http://schema.org/name": [
+    {
+      "@value": "s p Orbital Hybridization"
+    }
+  ],
+  "http://schema.org/sourceOrganization": [
+    {
+      "@value": "UCBerkeley"
+    }
+  ],
+  "http://schema.org/text": [
+    {
+      "@value": "MARK KUBINEC: When we're\nmaking molecular orbitals, we'd like to take\natomic orbitals that have the right geometry\nfor the problem. You'll have a tetrahedral\narrangement in my molecule, I'd like to have\natomic orbitals that point to the vertices\nof a tetrahedron. I can do that by a process\ncalled hybridisation-- taking a combination of the\ns and p orbitals on my atom and making new orbitals,\nhybrid orbitals. Atomic to hybrid\norbitals, here's carbon with its ground state\n1s2 2s2 2p2 configuration. I'm going to spread out the\nelectrons for my hybridisation process, and when I\ntake the 2s and the 2p to make an sp hybrid, I'll\ntake 2 atomic orbitals and form 2 new atomic orbitals\nwith the designation sp. So I'll have a new\nelectronic configuration, and that new electronic\nconfiguration will be 2sp-- those are sp orbitals, there'll\nbe 2 electrons in the sp-- The sp orbitals are intermediate\nin energy between the 2s I can continue the process if I\ntake and form sp2 orbitals out Then there'll be\n3 electrons there. Those orbitals are\nall equivalent, they point at 120\ndegrees from each other. And that electronic\nconfiguration will be sp2 now. sp2 with 3 electrons, and\n1 electron left in the p. Then I combine that fourth\norbital to form sp3 hybrids-- 4 equivalent orbitals now,\nbecause they're formed from My 4 equivalent sp3\norbitals will contain all 4 of the former s and p\nelectrons from carbon. So the electronic\nconfiguration-- So 4 orbitals equal\nenergy, hybrid orbitals showing a slightly different\nelectronic configuration, but orbitals that have\nthe appropriate geometry"
+    }
+  ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+    {
+      "@value": "<http://schema.org/VideoObject>"
+    },
+    {
+      "@value": "<https://knowledge.express/Resource>"
+    }
+  ]
+}
