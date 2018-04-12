@@ -12,7 +12,7 @@ export function iriify(str: string) {
 export function encodeRDF(str: string) {
   if (isURI(str)) return iriify(str);
   if (isLiteral(str)) return encodeLiteral(str);
-  return str;
+  return str.replace(/\n/g, "\\n");
 }
 
 export function isLiteral(str: string) {

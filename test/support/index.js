@@ -16,6 +16,8 @@ const taggedCompactedVideo = require('./Video/compacted-tagged');
 const flattenedTaggedExpandedVideo = require('./Video/flattened-expanded-tagged');
 const flattenedTaggedCompactedVideo = require('./Video/flattened-compacted-tagged');
 
+const breaksWithoutLabels = require('./breaks-without-labels');
+
 const context = require('./context');
 
 const nquads = fs.readFileSync(__dirname + '/nquads.nq').toString();
@@ -73,7 +75,8 @@ export {
   taggedExpandedVideo,
   taggedCompactedVideo,
   flattenedTaggedExpandedVideo,
-  flattenedTaggedCompactedVideo
+  flattenedTaggedCompactedVideo,
+  breaksWithoutLabels
 };
 
 // This is a bit hacky, but ava complains otherwise
