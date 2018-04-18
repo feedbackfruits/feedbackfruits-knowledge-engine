@@ -53,6 +53,8 @@
     "jsonld": "^0.5.18",
     "memux": "^0.4.2",
     "n3": "^0.11.2",
+    "rdf-canonize": "^0.2.3",
+    "rdf-nx-parser": "^1.0.3",
     "tslint": "^5.5.0",
     "typescript": "^2.4.1"
   },

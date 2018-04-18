@@ -3493,7 +3493,7 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-rdf-canonize@^0.2.1:
+rdf-canonize@^0.2.1, rdf-canonize@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/rdf-canonize/-/rdf-canonize-0.2.3.tgz#c89f3cd5823bb430e0060d714125ccc8febdf6c9"
   dependencies:
@@ -3501,6 +3501,10 @@ rdf-canonize@^0.2.1:
     nan "^2.7.0"
     node-forge "^0.7.1"
     semver "^5.4.1"
+
+rdf-nx-parser@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/rdf-nx-parser/-/rdf-nx-parser-1.0.3.tgz#a9daf6de4d6d87f193d3296e731f4954854de727"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
