@@ -46,6 +46,13 @@ test('Doc.toQuads', async (t) => {
   })
 });
 
+// test('Doc.toQuads/Doc.fromQuads: it works with complex things', async t => {
+//   const quads = await Doc.toQuads(Support.taggedExpandedVideo);
+//   const res = await Doc.fromQuads(quads, Support.context);
+//   // console.log(JSON.stringify(res));
+//   return t.deepEqual(res, Support.taggedExpandedVideo);
+// })
+
 test('Doc.validate: it validates', async t => {
   // const flattened = await Doc.flatten(Support.compactedVideo, Support.context);
   // console.log(flattened);
