@@ -37,7 +37,22 @@ export module Quad {
   export function fromNQuads(nquads: NQuads): Quad[] {
     // console.log('fromNQuads:', nquads);
     const parser = n3.Parser();
+    // console.log('Parsing nquads with n3:', JSON.stringify(nquads));
     const quads = (<n3.Triple[]><any>parser.parse(nquads, null)).map(({ subject, predicate, object, graph}) => {
+      // console.log('Object:', JSON.stringify(object));
+
+      if (Helpers.isLiteral(object)) {
+        // console.log('Doing hacky stuff...')
+        try {
+          object = JSON.parse(object.replace(/"/g, `\"`)
+                      .replace(/'/g, `\'`)
+                      .replace(/\n/g, "\\n"));
+        } catch(e) {
+          console.log('Hacky stuff broke on:', object);
+          console.error(e);
+        }
+      }
+
       return {
         subject,
         predicate,

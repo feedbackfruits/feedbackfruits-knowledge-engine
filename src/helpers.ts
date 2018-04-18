@@ -11,11 +11,18 @@ export function iriify(str: string) {
 
 export function encodeRDF(str: string) {
   if (isURI(str)) return iriify(str);
-  if (isLiteral(str)) return encodeLiteral(str);
-  return str.replace(/\n/g, "\\n");
+  if (isTypedLiteral(str)) return encodeLiteral(str);
+  return `"${str
+    .replace(/"/g, `\"`)
+    .replace(/'/g, `\'`)
+    .replace(/\n/g, "\\n")}"`;
 }
 
 export function isLiteral(str: string) {
+  return !isURI(str) && !isTypedLiteral(str);
+}
+
+export function isTypedLiteral(str: string) {
   return /\^\^/.test(str);
 }
 

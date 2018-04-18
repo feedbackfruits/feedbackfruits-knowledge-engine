@@ -133,7 +133,7 @@ export module Doc {
 
     const reframed = await frame(framed, _frame);
     const compared = await compare(framed, reframed, _frame["@context"]);
-    console.log('Compared frame lengths:', framed.length, reframed.length);
+    // console.log('Compared frame lengths:', framed.length, reframed.length);
     return compared === 0;
   }
 
@@ -152,6 +152,7 @@ export module Doc {
 
   export async function toQuads(doc: Doc): Promise<Quad[]> {
     const nquads = await jsonld.toRDF(doc, { format: 'application/nquads' });
+    // console.log('Nquads from jsonld:', JSON.stringify(nquads));
     return Quad.fromNQuads(nquads).reverse();
   };
 
