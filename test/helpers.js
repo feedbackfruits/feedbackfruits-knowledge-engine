@@ -8,8 +8,8 @@ test('it works', t => {
 
 test('encodeRDF: it encodes literals', t => {
   const value = `"1"`;
-  const type = "http://www.w3.org/2001/XMLSchema#integer";
+  const type = "<http://www.w3.org/2001/XMLSchema#integer>";
   const literal = `${value}^^${type}`;
   const res = Helpers.encodeRDF(literal);
-  return t.is(res, `${value}^^<${type}>`);
+  return t.is(res, `${value}^^${type}`);
 });

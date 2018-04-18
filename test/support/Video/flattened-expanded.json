@@ -757,7 +757,7 @@
       "https://knowledge.express/Resource",
       "http://schema.org/VideoObject"
     ],
-    "http://schema.org/description": "See examples of multiplying and dividing fractions with negative numbers.",
+    "http://schema.org/description": "See \"examples\" of multiplying and dividing fractions with negative numbers.",
     "http://schema.org/image": {
       "@id": "https://cdn.kastatic.org/googleusercontent/vkR4iP2PXl0SGkwmmpX-7N9mKNP7RWX8ilHMuROW745BJBvmp_eElCItbyPY-tweaVYgddFoNaaHpXSanPm92ZUS"
     },

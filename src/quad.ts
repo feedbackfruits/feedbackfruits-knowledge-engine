@@ -1,5 +1,5 @@
-import * as n3 from 'n3';
 import * as Helpers from './helpers';
+import * as canonize from 'rdf-canonize';
 
 export type NQuads = string;
 
@@ -36,32 +36,39 @@ export module Quad {
 
   export function fromNQuads(nquads: NQuads): Quad[] {
     // console.log('fromNQuads:', nquads);
-    const parser = n3.Parser();
-    // console.log('Parsing nquads with n3:', JSON.stringify(nquads));
-    const quads = (<n3.Triple[]><any>parser.parse(nquads, null)).map(({ subject, predicate, object, graph}) => {
-      // console.log('Object:', JSON.stringify(object));
-
-      if (Helpers.isLiteral(object)) {
-        // console.log('Doing hacky stuff...')
-        try {
-          object = JSON.parse(object.replace(/"/g, `\"`)
-                      .replace(/'/g, `\'`)
-                      .replace(/\n/g, "\\n"));
-        } catch(e) {
-          console.log('Hacky stuff broke on:', object);
-          console.error(e);
-        }
-      }
+    const quads = canonize.NQuads.parse(nquads);
+    return quads.map(({ subject, predicate, object, graph}) => {
+      const objectValue = (object.datatype && object.datatype.value !== "http://www.w3.org/2001/XMLSchema#string") ?
+        (JSON.stringify(object.value) + "^^" + Helpers.iriify(object.datatype.value)) :
+        object.value;
 
       return {
-        subject,
-        predicate,
-        object,
-        label: graph
-      }
+        subject: subject.value,
+        predicate: predicate.value,
+        object: objectValue,
+        label: graph.value
+      };
     });
+    // const parser = n3.Parser();
+    // console.log('Parsing nquads with n3:', JSON.stringify(nquads));
+    // const quads = (<n3.Triple[]><any>parser.parse(nquads, null)).map(({ subject, predicate, object, graph}) => {
+      // console.log('Object:', JSON.stringify(object));
 
-    return quads;
+      // if (Helpers.isLiteral(object)) {
+      //   // console.log('Doing hacky stuff...')
+      //   try {
+      //     object = JSON.parse(object.replace(/"/g, `\"`)
+      //                 .replace(/'/g, `\'`)
+      //                 .replace(/\n/g, "\\n"));
+      //   } catch(e) {
+      //     console.log('Hacky stuff broke on:', object);
+      //     console.error(e);
+      //   }
+      // }
+
+    // });
+
+    // return quads;
   }
 
   export const toNQuads = (quads: Quad[]): NQuads => {
