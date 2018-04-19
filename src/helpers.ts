@@ -12,11 +12,7 @@ export function iriify(str: string) {
 export function encodeRDF(str: string) {
   if (isURI(str)) return iriify(str);
   if (isTypedLiteral(str)) return str;
-  return JSON.stringify(str);
-  // return `"${str
-  //   .replace(/"/g, `\"`)
-  //   .replace(/'/g, `\'`)
-  //   .replace(/\n/g, "\\n")}"`;
+  return encodePlainLiteral(str);
 }
 
 export function isLiteral(str: string) {
@@ -25,6 +21,13 @@ export function isLiteral(str: string) {
 
 export function isTypedLiteral(str: string) {
   return /\^\^/.test(str);
+}
+
+export function encodePlainLiteral(str) {
+  return `"${str
+    .replace(/"/g, "\\\"")
+    .replace(/\r/g, "\\r")
+    .replace(/\n/g, "\\n")}"`;
 }
 
 export function encodeLiteral(str) {
