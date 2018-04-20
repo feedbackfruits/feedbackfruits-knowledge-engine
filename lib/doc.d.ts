@@ -13,7 +13,7 @@ export declare module Doc {
     function isValid(doc: Doc, context: Context): Promise<boolean>;
     function compare(a: Doc, b: Doc, context?: Context): Promise<number>;
     function compact(doc: Doc, context: Context): Promise<Doc>;
-    function expand(doc: Doc, context: Context): Promise<Doc>;
+    function expand(doc: Doc, context: Context): Promise<Doc[]>;
     function flatten(doc: Doc, context: Context): Promise<Doc[]>;
     function frame(graph: Doc[], frame: Frame): Promise<Doc[]>;
     function fullfilsFrame(graph: Doc[], _frame: Frame): Promise<boolean>;
