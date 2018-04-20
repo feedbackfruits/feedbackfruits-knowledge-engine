@@ -2795,9 +2795,9 @@ mem@^1.1.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-memux@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/memux/-/memux-0.4.4.tgz#363d5e9242553b794f96996c8b5d3ecf52ca884c"
+memux@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/memux/-/memux-0.4.5.tgz#af8547c3480cc61eb0f667cb25d381c79a99a949"
   dependencies:
     "@reactivex/rxjs" "^5.4.2"
     "@types/node" "^9.4.0"
