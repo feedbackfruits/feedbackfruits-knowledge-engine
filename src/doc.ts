@@ -88,8 +88,8 @@ export module Doc {
     return res;
   }
 
-  export async function expand(doc: Doc, context: Context): Promise<Doc> {
-    return [].concat(jsonld.expand({ "@context": context, "@graph": doc }))[0];
+  export async function expand(doc: Doc, context: Context): Promise<Doc[]> {
+    return [].concat(await jsonld.expand({ "@context": context, "@graph": doc }));
   }
 
   export async function flatten(doc: Doc, context: Context): Promise<Doc[]> {
@@ -118,7 +118,7 @@ export module Doc {
 
   export async function frame(graph: Doc[], frame: Frame): Promise<Doc[]> {
     const flattened = await flatten({ "@graph": graph }, frame["@context"]);
-    const expanded = await Promise.all(flattened.map(doc => expand(doc, frame["@context"])));
+    const expanded = await expand(flattened, frame["@context"]);
     const framed = await jsonld.frame(expanded, frame);
     // return flattened;
     // Strip the context from the framed result
