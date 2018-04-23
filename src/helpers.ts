@@ -41,7 +41,7 @@ export function isURI(str: string) {
 }
 
 export function isIRI(str: string) {
-  return /<(.*)>/.test(str);
+  return /^<(.*)>$/.test(str) && isURI(str.slice(1, str.length - 1));
 }
 
 
