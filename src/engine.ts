@@ -31,18 +31,21 @@ export async function createSend(config: EngineConfig): Promise<SendFn<Doc>> {
 
   return async (operation: memux.Operation<Doc>) => {
     const { data } = operation;
-    const compacted = await Doc.compact(data, Context.context);
-    return sendFn({ ...operation, key: compacted["@id"], data: compacted });
-    // const flattened = await Doc.flatten(data, Context.context);
-    // console.log('Flattening operation...');
+    // const compacted = await Doc.compact(data, Context.context);
+    // return sendFn({ ...operation, key: compacted["@id"], data: compacted });
+    const flattened = await Doc.flatten(data, Context.context);
+    console.log('Flattening operation...');
 
-    // console.log('Sending all flattened docs:', flattened);
-    // await Promise.all(flattened.map(async doc => {
-    //   // console.log('Mapping with send');
-    //   if (!(typeof doc["@id"] === 'string')) throw new Error(`Trying to send a doc without an @id`);
-    //   await Doc.validate(doc, Context.context); // This will throw an Error is doc is invalid
-    //   return sendFn({ ...operation, data: doc, key: doc["@id"] });
-    // }));
+    console.log('Sending all flattened docs:', flattened);
+    await Promise.all(flattened.map(async doc => {
+      // console.log('Mapping with send');
+      if (!(typeof doc["@id"] === 'string')) throw new Error(`Trying to send a doc without an @id`);
+      const compacted = await Doc.compact(doc, Context.context);
+
+      await Doc.validate(compacted, Context.context); // This will throw an Error is doc is invalid
+
+      return sendFn({ ...operation, data: compacted, key: compacted["@id"] });
+    }));
 
     // console.log('Done sending...');
   };
@@ -55,12 +58,17 @@ export async function createReceive(config: EngineConfig & { send: SendFn<Doc>, 
     ca: config.KAFKA_CA,
   };
 
+  const receiver = await config.receive(config.send);
   const _receive = async (operation: memux.Operation<Doc>): Promise<void> => {
     const { data } = operation;
-    const expanded = (await Doc.expand(data, Context.context))[0];
+    const flattened = await Doc.flatten(data, Context.context);
+    const expanded = await Doc.expand(flattened, Context.context);
 
-    const receiver = await config.receive(config.send);
-    return receiver({ ...operation, data: expanded });
+    await Promise.all(expanded.map(async (doc) => {
+      return receiver({ ...operation, data: doc });
+    }));
+
+    return;
   }
 
   return memux.createReceive({
