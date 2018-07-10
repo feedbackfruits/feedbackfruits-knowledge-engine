@@ -1635,9 +1635,9 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
-feedbackfruits-knowledge-context@feedbackfruits/feedbackfruits-knowledge-context#^1.1.6:
-  version "1.1.6"
-  resolved "https://codeload.github.com/feedbackfruits/feedbackfruits-knowledge-context/tar.gz/bc23e226f4f9ffe8939d3f59cf0f17c4878d9efb"
+feedbackfruits-knowledge-context@feedbackfruits/feedbackfruits-knowledge-context#^1.1.7:
+  version "1.1.7"
+  resolved "https://codeload.github.com/feedbackfruits/feedbackfruits-knowledge-context/tar.gz/39dbb713cf6612f2003055517416e4e027d72768"
   dependencies:
     "@types/node" "^8.0.8"
     recursive-readdir-sync "^1.0.6"
