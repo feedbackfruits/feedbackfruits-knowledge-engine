@@ -7,4 +7,4 @@ export declare type AnnotatorOptions = {
     receive: (send: Engine.SendFn<Doc>) => (operation: Operation<Doc>) => Promise<void>;
     customConfig?: typeof Config.Base;
 };
-export declare function Annotator({name, receive, customConfig}: AnnotatorOptions): Promise<void>;
+export declare function Annotator({ name, receive, customConfig }: AnnotatorOptions): Promise<void>;

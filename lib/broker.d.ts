@@ -6,4 +6,4 @@ export declare type BrokerOptions = {
     receive: (operation: Operation<Doc>) => Promise<void>;
     customConfig?: typeof Config.Base;
 };
-export declare function Broker({name, receive, customConfig}: BrokerOptions): Promise<void>;
+export declare function Broker({ name, receive, customConfig }: BrokerOptions): Promise<void>;

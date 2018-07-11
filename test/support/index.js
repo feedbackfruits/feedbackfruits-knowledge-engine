@@ -22,6 +22,13 @@ const context = require('./context');
 
 const nquads = fs.readFileSync(__dirname + '/nquads.nq').toString();
 
+const xmlCaptions = fs.readFileSync(__dirname + '/captions/captions.xml').toString();
+const xmlParsed = require('./captions/xml-parsed');
+const captions = {
+  xml: xmlCaptions,
+  xmlParsed
+};
+
 export function sort(docs) {
   return sortArray(sortAnnotations(sortTags(sortCaptions(docs))));
 }
@@ -76,10 +83,6 @@ export {
   taggedCompactedVideo,
   flattenedTaggedExpandedVideo,
   flattenedTaggedCompactedVideo,
-  breaksWithoutLabels
+  breaksWithoutLabels,
+  captions
 };
-
-// This is a bit hacky, but ava complains otherwise
-test('support', t => {
-  t.pass();
-});
