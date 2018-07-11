@@ -7,6 +7,9 @@ export { Config };
 import * as Helpers from './helpers';
 export { Helpers };
 
+import * as Captions from './captions';
+export { Captions };
+
 export * from './quad';
 export * from './doc';
 
