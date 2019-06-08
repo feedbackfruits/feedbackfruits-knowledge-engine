@@ -18,7 +18,7 @@ const flattenedTaggedCompactedVideo = require('./Video/flattened-compacted-tagge
 
 const breaksWithoutLabels = require('./breaks-without-labels');
 
-const context = require('./context');
+const { context } = require('feedbackfruits-knowledge-context');
 
 const nquads = fs.readFileSync(__dirname + '/nquads.nq').toString();
 
