@@ -110,7 +110,7 @@ export module Doc {
     const strippedDoc = await fromQuads(strippedOfLabel, context);
 
     // console.log("Flattening stripped doc:", strippedDoc);
-    const flattened = await jsonld.flatten(strippedDoc);
+    const flattened: object[] = await jsonld.flatten(strippedDoc);
     const compacted = Promise.all(flattened.map(doc => compact(doc, context)));
 
     return compacted;

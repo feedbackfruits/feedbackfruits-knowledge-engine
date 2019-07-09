@@ -9,7 +9,7 @@ export type AnnotatorOptions = {
   customConfig?: typeof Config.Base
 };
 
-export async function Annotator({ name, receive, customConfig = {} }: AnnotatorOptions): Promise<void> {
+export async function Annotator({ name, receive, customConfig = {} as typeof Config.Base }: AnnotatorOptions): Promise<void> {
   const config = Object.assign({}, Config.Base, Config.Annotator, customConfig);
   const send = await Engine.createSend(config);
   return await Engine.createReceive({ ...config, send, receive });
