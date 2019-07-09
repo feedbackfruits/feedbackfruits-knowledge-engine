@@ -23,4 +23,4 @@ export declare function toMetadata(captions: Caption[]): {
     totalLength: number;
     totalDuration: string;
 };
-export { SRT, XML };
+export { SRT, XML, };

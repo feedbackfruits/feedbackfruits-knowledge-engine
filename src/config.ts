@@ -1,5 +1,5 @@
 // tslint:disable-next-line no-var-requires
-require('dotenv').load({ silent: true });
+require('dotenv').config();
 
 // Miner config
 export const Miner = {

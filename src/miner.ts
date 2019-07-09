@@ -8,7 +8,7 @@ export type MinerOptions = {
   customConfig?: typeof Config.Base
 };
 
-export async function Miner({ name, customConfig = {} }: MinerOptions): Promise<(operation: Operation<Doc>) => Promise<void>> {
+export async function Miner({ name, customConfig = {} as typeof Config.Base }: MinerOptions): Promise<(operation: Operation<Doc>) => Promise<void>> {
   const config = Object.assign({}, Config.Base, Config.Miner, customConfig);
   return await Engine.createSend(config);
 }

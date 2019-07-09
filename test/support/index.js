@@ -1,6 +1,10 @@
 import test from 'ava';
 import * as fs from 'fs';
 
+test.skip('Support noop', () => {
+  t.pass();
+})
+
 const expanded = require('./expanded');
 const quads = require('./quads');
 const compacted = require('./compacted');

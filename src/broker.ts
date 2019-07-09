@@ -9,7 +9,7 @@ export type BrokerOptions = {
   customConfig?: typeof Config.Base
 };
 
-export async function Broker({ name, receive, customConfig = {} }: BrokerOptions): Promise<void> {
+export async function Broker({ name, receive, customConfig = {} as typeof Config.Base }: BrokerOptions): Promise<void> {
   const config = Object.assign({}, Config.Base, Config.Broker, customConfig);
   const send: Engine.SendFn<Doc> = async (operation) => {};
   return (await Engine.createReceive({ ...config, send, receive: (send) => receive }));

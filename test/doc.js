@@ -62,7 +62,7 @@ test('Doc.validate: it validates', async t => {
 });
 
 test('Doc.validate: it throws errors', async t => {
-  const error = await t.throws(Doc.validate({ ...Support.compactedVideo, ["http://blabla.com/fake"]: "someValue" }, Support.context));
+  const error = await t.throwsAsync(async () => await Doc.validate({ ...Support.compactedVideo, ["http://blabla.com/fake"]: "someValue" }, Support.context));
   return t.is(error.message, `Doc contains invalid key "http://blabla.com/fake".`);
 });
 
