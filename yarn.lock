@@ -2099,9 +2099,9 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.0"
 
-feedbackfruits-knowledge-context@feedbackfruits/feedbackfruits-knowledge-context#v1.1.14:
-  version "1.1.14"
-  resolved "https://codeload.github.com/feedbackfruits/feedbackfruits-knowledge-context/tar.gz/087b64440a1bc5eaec198ee57d3b5bd73f070fbd"
+feedbackfruits-knowledge-context@feedbackfruits/feedbackfruits-knowledge-context#v1.1.15:
+  version "1.1.15"
+  resolved "https://codeload.github.com/feedbackfruits/feedbackfruits-knowledge-context/tar.gz/28a85ebf9f177e02aa2d3a387eef8ceffdf7c416"
   dependencies:
     "@types/node" "^12.6.1"
     recursive-readdir-sync "^1.0.6"
