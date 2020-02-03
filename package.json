@@ -30,7 +30,7 @@
     "@types/node": "^12.6.1",
     "dotenv": "^8.0.0",
     "duration-iso-8601": "^1.1.0",
-    "feedbackfruits-knowledge-context": "feedbackfruits/feedbackfruits-knowledge-context#v1.1.15",
+    "feedbackfruits-knowledge-context": "feedbackfruits/feedbackfruits-knowledge-context#v1.1.16",
     "isuri": "^2.0.3",
     "jsonld": "^1.6.2",
     "memux": "^0.4.5",
