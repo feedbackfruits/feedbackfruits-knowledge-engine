@@ -35,7 +35,7 @@
     "jsonld": "^1.6.2",
     "memux": "^0.4.5",
     "n3": "^1.1.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "parse-srt": "^1.0.0-alpha",
     "rdf-canonize": "^1.0.3",
     "rdf-nx-parser": "^1.0.3",
